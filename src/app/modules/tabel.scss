@@ -1,0 +1,272 @@
+
+@import '../../assets/scss/now-ui-dashboard/variables';
+
+:host {
+  .tabel__container {
+    overflow: auto;
+  }
+
+  .card {
+    .card-header {
+      .card-action {
+        margin-left: auto;
+
+        a {
+          color: $white-color;
+          font-weight: 600;
+        }
+
+        [dir="rtl"] & {
+          margin-right: auto;
+          margin-left: initial;
+        }
+      }
+    }
+  }
+
+  .mat-row,
+  .mat-header-row {
+    max-height: 550px;
+    transition: max-height 0.15s ease-in-out;
+    width: 100%;
+  }
+
+  /*Tabel scss*/
+  .mat-table {
+    min-width: 730px;
+
+    .mat-header-row {
+      .mat-header-cell {
+        font-family: "Montserrat", "Helvetica Neue", Arial, sans-serif;
+
+        [dir="rtl"] & {
+          font-family: $cairo-family;
+        }
+      }
+    }
+
+    .mat-row {
+      font-family: "Montserrat", "Helvetica Neue", Arial, sans-serif;
+      transition: all 0.5 ease-in-out;
+
+      .mat-column-name {
+        text-transform: capitalize;
+
+        span {
+          font-weight: 700;
+          white-space: nowrap;
+          width: 120px;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+      }
+
+      &:hover {
+        background: $medium-gray;
+      }
+
+      [dir="rtl"] & {
+        font-family: $cairo-family;
+      }
+    }
+  }
+
+  /*End Tabel scss*/
+}
+
+::ng-deep .mat-tooltip {
+  font-family: $cairo-family;
+  font-size: 18px;
+  text-transform: capitalize;
+}
+
+// start actions style
+.mat-menu-item {
+  span {
+    font-family: $cairo-family !important;
+    font-weight: 600;
+  }
+
+  mat-icon {
+    color: $red-color;
+  }
+}
+
+// end actions style
+
+::ng-deep {
+  .mat-tabel {
+    background: $white-bg !important;
+    min-width: 730px;
+  }
+
+  .mat-header-cell {
+    color: $red-color;
+  }
+
+  .mat-cell {
+    border-color: $light-gray;
+    color: $black-color;
+
+    button {
+      span {
+        mat-icon {
+          color: $red-color;
+        }
+      }
+    }
+
+    img {
+      width: 40px;
+      height: 40px;
+      box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.14),
+        0 7px 10px -5px rgba(255, 152, 0, 0.4);
+    }
+  }
+
+  .mat-header-cell {
+    border-color: $medium-gray;
+    font-size: $font-size-large;
+    font-weight: $font-weight-bold;
+  }
+
+  .activeRow {
+    background: $smoke-bg;
+    transition: all 0.3s ease-in-out;
+  }
+
+  .no__record {
+    min-width: 100%;
+    transition: max-height 0.15s ease-in-out;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+
+    h5 {
+      text-align: center;
+      position: relative;
+      line-height: 2em;
+    }
+  }
+
+  /*Start search input */
+
+  .button {
+    display: inline-block;
+    margin: 0px 5px;
+    background: $red-color;
+    font-size: 14px;
+    padding-left: 32px;
+    padding-right: 32px;
+    height: 45px;
+    line-height: 50px;
+    text-align: center;
+    color: white;
+    text-decoration: none;
+    cursor: pointer;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  }
+
+  .button:hover {
+    transition-duration: 0.4s;
+    -moz-transition-duration: 0.4s;
+    -webkit-transition-duration: 0.4s;
+    -o-transition-duration: 0.4s;
+  }
+
+  .mglass {
+    display: inline-block;
+    pointer-events: none;
+    -webkit-transform: rotate(-45deg);
+    -moz-transform: rotate(-45deg);
+    -o-transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+  }
+
+  .searchbutton {
+    position: absolute;
+    font-size: 2.3em;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
+  .search:focus+.searchbutton {
+    transition-duration: 0.4s;
+    -moz-transition-duration: 0.4s;
+    -webkit-transition-duration: 0.4s;
+    -o-transition-duration: 0.4s;
+    background-color: white;
+    color: black;
+  }
+
+  .search {
+    position: absolute;
+    left: 49px;
+    /* Button width-1px (Not 50px/100% because that will sometimes show a 1px line between the search box and button) */
+    background: $white-color;
+    outline: none;
+    border: none;
+    padding: 0;
+    width: 0;
+    height: 100%;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    z-index: 10;
+    transition-duration: 0.4s;
+    -moz-transition-duration: 0.4s;
+    -webkit-transition-duration: 0.4s;
+    -o-transition-duration: 0.4s;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  }
+
+  .search:focus {
+    width: 363px;
+    /* Bar width+1px */
+    padding: 0 16px 0 0;
+  }
+
+  .expandright {
+    left: auto;
+    right: 49px;
+    /* Button width-1px */
+  }
+
+  .expandright:focus {
+    padding: 0 0 0 16px;
+  }
+
+  /*End search input*/
+}
+
+@media screen and (min-width: 767px) {
+  .search-container {
+    position: relative;
+    display: inline-block;
+    margin: 0px 10px;
+    height: 45px;
+    width: 50px;
+    vertical-align: bottom;
+  }
+
+  .search-container-xs {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 766px) {
+  .search-container-xs {
+    display: block;
+  }
+
+  .search-container {
+    display: none;
+  }
+}

@@ -1,0 +1,120 @@
+@import "../../../../../assets/scss/now-ui-dashboard/variables";
+
+.img-wrap {
+  position: relative;
+  display: inline-block;
+  font-size: 0;
+  margin-right: 10px;
+  margin-top: 5px;
+}
+.image__container {
+  margin: 30px 0px;
+}
+input[type="file"] {
+  visibility: hidden;
+}
+
+.before__upload__container {
+  width: 124px;
+  height: 124px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  margin: auto;
+}
+
+.form-group {
+  margin: 10px auto;
+  padding: 20px auto;
+  label {
+    font-weight: 400;
+  }
+}
+.divider {
+  margin: 30px 0;
+}
+
+.row {
+  align-items: center;
+}
+
+.chocices__wrapper {
+  width: 100%;
+  .wrapperX {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    .col-option {
+      flex: 1;
+      margin: 10px 15px;
+    }
+  }
+}
+.add__another__option {
+  box-shadow: none;
+  background: #e84118;
+  color: #fff;
+}
+
+
+::ng-deep {
+  .mat-form-field {
+    width: 100%;
+  }
+
+  mat-checkbox {
+    &:not(:nth-of-type(1)) {
+      margin: auto 10px auto auto;
+    }
+
+    .mat-checkbox-layout {
+      .mat-checkbox-label {
+        margin-right: 7px;
+    }
+    }
+  }
+  .mat-checkbox-inner-container {
+    width: 20px !important;
+    height: 20px !important;
+  }
+  .mat-checkbox-label {
+    text-transform: capitalize;
+  }
+}
+
+.checkboxs__container {
+  margin: 20px auto;
+}
+
+@media screen and (max-width: 600px) {
+  ng-deep {
+    .mat-form-field {
+      width: 100%;
+    }
+    .mat-checkbox-layout {
+    .mat-checkbox-label {
+      font-size: 12px !important;
+    }
+  }
+    mat-checkbox {
+
+      &:not(:nth-of-type(1)):not(:nth-of-type(3)) {
+        margin: auto 5px !important;
+      }
+
+    }
+    .mat-checkbox-inner-container {
+      width: 15px !important;
+      height: 15px !important;
+    }
+    .mat-checkbox-label {
+      font-weight: normal;
+      text-transform: capitalize;
+    }
+  }
+
+  .checkboxs__container {
+    margin: 20px auto;
+  }
+}

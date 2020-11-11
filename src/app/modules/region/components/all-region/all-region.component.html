@@ -1,0 +1,24 @@
+<div class="dialog">
+  <div class="dialog__header">
+    <ng-container>
+      <div class="title">
+        <h5>{{area.name}} {{ "regions" | translate }}</h5>
+      </div>
+    </ng-container>
+  </div>
+  <mat-list *ngFor="let region of regions" style="max-height: 400px">
+    <div style="display: flex; flex-direction: row; justify-content: space-between">
+      <mat-list-item> {{region?.name}} -  {{region?.translation?.ar?.name}} &nbsp;  <span>  - {{region.deliveryFees}}.LE  </span></mat-list-item>
+      <button mat-icon-button (click)="editRegion(region)">
+        <mat-icon [matTooltip]="'edit region'" matTooltipPosition="above">edit</mat-icon>
+      </button>
+    </div>
+  </mat-list>
+</div>
+<div style="display: flex; flex-direction: row; justify-content: space-between">
+
+  <app-close-dialog-button
+    (isClicked)="close()"
+    name="{{ 'Close' | translate }}">
+  </app-close-dialog-button>
+</div>

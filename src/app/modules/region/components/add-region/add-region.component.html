@@ -1,0 +1,35 @@
+<div class="dialog">
+  <div class="dialog__header">
+    <ng-container>
+      <div class="title">
+        <h5>{{ "Add New Region" | translate }}</h5>
+      </div>
+    </ng-container>
+  </div>
+  <form [formGroup]="NewCategory">
+
+
+    <div class="form-group">
+      <input type="text" class="form-control" formControlName="enName" placeholder="English Name"/>
+    </div>
+    <div class="form-group">
+      <input type="text" class="form-control" formControlName="arName" placeholder="Arabic Name"/>
+    </div>
+    <div class="form-group">
+      <input type="number" class="form-control" formControlName="deliveryFees" placeholder="Delivery Fees"/>
+    </div>
+
+  </form>
+</div>
+<div style="display: flex; flex-direction: row; justify-content: space-between">
+  <app-open-dialog-button
+    [loading]="loading"
+    (isClicked)="SaveCategory()"
+    name="{{ 'Submit' | translate }}"
+  ></app-open-dialog-button>
+
+  <app-close-dialog-button
+    (isClicked)="close()"
+    name="{{ 'Close' | translate }}">
+  </app-close-dialog-button>
+</div>

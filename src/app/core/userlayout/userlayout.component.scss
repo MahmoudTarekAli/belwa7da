@@ -1,0 +1,29 @@
+@import '../../../assets/scss/now-ui-dashboard/variables';
+
+:host {
+
+
+  .sidebar {
+    [dir=rtl] & {
+      right: 0;
+      left: initial;
+    }
+
+    &:after {
+      background: #fff;
+
+    }
+  }
+
+  .off-canvas-sidebar {
+    &:after {
+      background: #fff;
+    }
+  }
+
+  .main-panel {
+    [dir=rtl] & {
+      float: left;
+    }
+  }
+}

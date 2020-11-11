@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="a8f9cca1-c079-4f97-90d8-53ce9b85b779" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+<<<<<<< HEAD
+      <change beforePath="$PROJECT_DIR$/src/app/modules/auth/register/register.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/modules/auth/register/register.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/scss/now-ui-dashboard/_responsive.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/scss/now-ui-dashboard/_responsive.scss" afterDir="false" />
+=======
+      <change beforePath="$PROJECT_DIR$/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/server.js" afterDir="false" />
+>>>>>>> 27706646284c4b084a6eef5df27285a07309e8d7
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="TypeScript File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1QnJuWywVF4tqNiRbvqi7Iu2gxc" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="add_unversioned_files" value="true" />
+    <property name="editor.config.ad.shown" value="true" />
+    <property name="ignore_missing_gitignore" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="nodejs.protractor.protractor_package" value="$PROJECT_DIR$/node_modules/protractor" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="settings.editor.selected.configurable" value="editing.templates" />
+    <property name="ts.external.directory.path" value="C:\Users\Admin\Downloads\now ui\dash-Clakett-location\node_modules\typescript\lib" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Admin\Downloads\now ui\dash-Clakett-location" />
+      <recent name="C:\Users\Admin\Downloads\now ui\dash-Clakett-location\src\app\modules\orders" />
+      <recent name="C:\Users\Admin\Downloads\now ui\dash-Clakett-location\src\app\shared\components" />
+      <recent name="C:\Users\Admin\Downloads\now ui\dash-Clakett-location\src\assets\img" />
+      <recent name="C:\Users\Admin\Downloads\now ui\dash-aress\src\app\modules\space-type" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="npm.Angular CLI Server">
+    <configuration name="Tests" type="JavaScriptTestRunnerKarma">
+      <config-file value="$PROJECT_DIR$/karma.conf.js" />
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <configuration name="E2E Tests" type="JavaScriptTestRunnerProtractor">
+      <config-file value="$PROJECT_DIR$/protractor.conf.js" />
+      <node-interpreter value="project" />
+      <protractor-package value="$PROJECT_DIR$/node_modules/protractor" />
+      <protractor-options value="" />
+      <envs />
+      <scope-kind value="ALL" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Angular Application" type="JavascriptDebugType" uri="http://localhost:4200">
+      <method v="2" />
+    </configuration>
+    <configuration name="Angular CLI Server" type="js.build_tools.npm">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="start" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="a8f9cca1-c079-4f97-90d8-53ce9b85b779" name="Default Changelist" comment="" />
+      <created>1564694664425</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1564694664425</updated>
+      <workItem from="1564694667240" duration="561000" />
+      <workItem from="1565744990858" duration="19000" />
+      <workItem from="1566874113281" duration="643000" />
+      <workItem from="1568125487864" duration="1335000" />
+      <workItem from="1568301817936" duration="8676000" />
+      <workItem from="1568399871067" duration="606000" />
+      <workItem from="1568400662763" duration="41987000" />
+      <workItem from="1568596986260" duration="7165000" />
+      <workItem from="1568756732164" duration="4453000" />
+      <workItem from="1568849804938" duration="6831000" />
+      <workItem from="1569025702806" duration="42313000" />
+      <workItem from="1569393033064" duration="815000" />
+      <workItem from="1569620769830" duration="17903000" />
+      <workItem from="1569976860971" duration="11616000" />
+      <workItem from="1570269734809" duration="14760000" />
+      <workItem from="1570423995768" duration="2997000" />
+      <workItem from="1570440750794" duration="622000" />
+      <workItem from="1570457149663" duration="8840000" />
+      <workItem from="1570835211933" duration="1001000" />
+      <workItem from="1570885157398" duration="2259000" />
+      <workItem from="1571011185489" duration="1276000" />
+      <workItem from="1571097890691" duration="2504000" />
+      <workItem from="1571289600750" duration="285000" />
+      <workItem from="1571369420517" duration="326000" />
+      <workItem from="1571455782972" duration="1422000" />
+      <workItem from="1571521991179" duration="4362000" />
+      <workItem from="1571757504005" duration="4923000" />
+      <workItem from="1571891377413" duration="3180000" />
+      <workItem from="1571968052365" duration="6794000" />
+      <workItem from="1572124762058" duration="4100000" />
+      <workItem from="1572161269719" duration="1465000" />
+      <workItem from="1572320382043" duration="2598000" />
+      <workItem from="1572452451784" duration="11107000" />
+      <workItem from="1572582733339" duration="55000" />
+      <workItem from="1572691327036" duration="3656000" />
+      <workItem from="1572939326687" duration="5887000" />
+      <workItem from="1573019295431" duration="9576000" />
+      <workItem from="1573259676688" duration="697000" />
+      <workItem from="1573355163148" duration="13543000" />
+      <workItem from="1573558530747" duration="189000" />
+      <workItem from="1573767785614" duration="1007000" />
+      <workItem from="1573789042781" duration="1859000" />
+      <workItem from="1573908937215" duration="676000" />
+      <workItem from="1573984718623" duration="1877000" />
+      <workItem from="1574937049589" duration="542000" />
+      <workItem from="1574952760085" duration="4531000" />
+      <workItem from="1575058522031" duration="160000" />
+      <workItem from="1575292809446" duration="4673000" />
+      <workItem from="1575298110602" duration="366000" />
+      <workItem from="1575305621784" duration="38000" />
+      <workItem from="1575371213642" duration="2189000" />
+      <workItem from="1575465800242" duration="1011000" />
+      <workItem from="1575482358231" duration="3966000" />
+      <workItem from="1575658403363" duration="4422000" />
+      <workItem from="1575662855078" duration="26624000" />
+      <workItem from="1575692638585" duration="20377000" />
+      <workItem from="1575889196778" duration="46628000" />
+      <workItem from="1576101461065" duration="750000" />
+      <workItem from="1576149707102" duration="12319000" />
+      <workItem from="1576271952429" duration="3122000" />
+      <workItem from="1576407757126" duration="2902000" />
+      <workItem from="1576501811312" duration="7963000" />
+      <workItem from="1576580112440" duration="2313000" />
+      <workItem from="1576622409979" duration="1388000" />
+      <workItem from="1576808420116" duration="12331000" />
+      <workItem from="1576853680165" duration="7986000" />
+      <workItem from="1576869130224" duration="5910000" />
+      <workItem from="1577100112428" duration="3668000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>

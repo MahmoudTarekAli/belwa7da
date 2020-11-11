@@ -1,0 +1,18 @@
+<!-- <button
+  mat-button
+  class="submit__btn"
+  [disabled]="isDisabled === undefined || isResend === 0"
+>
+  {{ name }} {{ isResend }} <span class="loading" *ngIf="loading"> </span>
+</button> -->
+
+<button
+  class="btn-block custom btn-1 "
+  [ngClass]="{ 'loading-btn': loading }"
+  (click)="handleIsClicked()"
+  mat-button
+>
+  {{ name }}
+
+  <span class="loading" *ngIf="loading"> </span>
+</button>

@@ -1,0 +1,10 @@
+<button
+  mat-button
+  class="submit__btn btn-block custom-btn btn-1"
+  [disabled]="isResend !== 0"
+  [ngClass]="{ 'loading-btn': loading }"
+  (click)="handleIsClicked()"
+>
+  {{ name }} <span *ngIf="isResend !== 0">{{ isResend }}</span>
+  <span class="loading" *ngIf="loading"> </span>
+</button>

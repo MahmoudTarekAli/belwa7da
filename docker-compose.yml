@@ -1,0 +1,22 @@
+version: '3'
+services:
+  dashboard:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: dashboard
+    container_name: dashboard
+    ports:
+      - 3005:3000
+    restart: unless-stopped
+    environment:
+      VIRTUAL_HOST: dashboard.alhindawih.com
+      VIRTUAL_PORT: 3005
+      LETSENCRYPT_HOST: dashboard.alhindawih.com
+      LETSENCRYPT_EMAIL: mohammedsalaah96@gmail.com
+networks:
+  default:
+    external:
+      name: nginx-proxy
+
+

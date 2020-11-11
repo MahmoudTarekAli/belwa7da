@@ -1,0 +1,55 @@
+<!------ Include the above in your HEAD tag ---------->
+
+<div class="container login-container">
+  <div
+    [className]="
+      isLogin
+        ? 'login-container-rotate-180 row login-container-inner'
+        : 'login-container-rotate-0 row login-container-inner'
+    "
+  >
+
+    <div class="col-md-12  flip-box-back">
+      <div
+        style="margin-left: 25%; width: 50%;height: auto;border-radius: 20px;"
+        class="login-ts"
+        [className]="
+          isRegister ? 'display-none login-form-1' : 'display-flex login-form-1'
+        "
+      >
+        <h3>Belwa7da-Dashboard</h3>
+        <img src="../../../../assets/img/user.jpg" style="width: 20%; margin-left: 40%;">
+
+        <h6 class="text-center mt-3">Please log in</h6>
+        <form [formGroup]="LoginForm">
+          <div class="form-group">
+            <input
+              type="phone"
+              formControlName="username"
+              placeholder="username"
+              class="form-control"
+            />
+          </div>
+          <div class="form-group">
+            <input
+              type="password"
+              formControlName="password"
+              placeholder="password"
+              class="form-control"
+            />
+          </div>
+          <div class="form-group">
+            <input
+              type="submit"
+              class="btnSubmit w-50"
+              value="Login"
+              style="display: block; margin-left: 25%;margin-top: 10%;"
+              (click)="login()"
+            />
+          </div>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</div>

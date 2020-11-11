@@ -1,0 +1,10 @@
+@import "../../../assets/scss/now-ui-dashboard/variables";
+.mat-cell{
+  word-break: break-word;
+  margin-right: 30px;
+}
+.text{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

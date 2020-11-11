@@ -1,0 +1,93 @@
+<div class="main-content">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card card-user">
+        <div class="card-body">
+          <form [formGroup]="updateProduct" @boxAnimation>
+            <div class="row">
+              <div class="col-md-12">
+                <button class="btn btn-simple btn-round btn-sm float-left" (click)="filePicker.click()"><i class="fas fa-upload"></i>  Product Images</button>
+                <input
+                  type="file"
+                  multiple
+                  #filePicker
+                  hidden
+                  (change)="onSelectFile($event)"
+                />
+              </div>
+              <div class="col-md-12">
+                <div class="img-wrap" *ngFor="let url of PreviewImages"  >
+                  <img [src]="url" class="rounded mb-3 images" width="150" height="120">
+                </div>
+              </div>
+              <div class="col-md-12">
+                <div class="form-group">
+                  <input
+                    type="text"
+                    class="form-control"
+                    formControlName="name"
+                    placeholder="Name"
+                  />
+                </div>
+              </div>
+              <div class="col-md-12">
+                <div class="form-group">
+                  <input
+                    type="text"
+                    class="form-control"
+                    formControlName="description"
+                    placeholder="Description"
+                  />
+                </div>
+              </div>
+              <div class="col-md-12">
+                <div class="form-group">
+                  <input
+                    type="number"
+                    class="form-control"
+                    formControlName="price"
+                    placeholder="Price"
+                  />
+                </div>
+              </div>
+              <div class="col-md-12">
+                <div class="form-group">
+                  <input
+                    type="number"
+                    class="form-control"
+                    formControlName="inventory"
+                    placeholder="inventory"
+                  />
+                </div>
+              </div>
+              <div class="col-md-12">
+                <div class="form-group">
+                  <mat-form-field appearance="outline">
+                    <mat-select placeholder="Select categories"  [(ngModel)]="selectedCategory"
+                                   formControlName="category">
+                      <mat-option *ngFor="let element of categoriesArr; let i = index" [value]="element._id">
+                        {{ element.name }}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+
+              </div>
+
+            </div>
+            <hr class="divider" />
+          </form>
+
+          <div class="col-md-3">
+            <app-open-dialog-button
+              [loading]="loading"
+              (isClicked)="submit()"
+              name="{{ 'Submit' | translate }}"
+            ></app-open-dialog-button>
+          </div>
+          <!--End Another Options-->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

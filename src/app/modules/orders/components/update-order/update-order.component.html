@@ -1,0 +1,23 @@
+<div class="dialog">
+  <div class="dialog__header">
+    <div class="title">
+      <h4>{{ "Update Order" | translate }}</h4>
+    </div>
+  </div>
+  <form>
+    <div class="row">
+    <mat-form-field style="width: 100%" appearance="outline">
+      <mat-select [(value)]="selectedStatus" placeholder="ChangeStatus" >
+        <mat-option value="completed">completed</mat-option>
+        <mat-option value="out">out</mat-option>
+        <mat-option value="canceled">canceled</mat-option>
+      </mat-select>
+    </mat-form-field>
+    </div>
+    <app-open-dialog-button
+      [loading]="loading"
+      (isClicked)="updateOrder()"
+      name="{{ 'Submit' | translate }}"
+    ></app-open-dialog-button>
+  </form>
+</div>

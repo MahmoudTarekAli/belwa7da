@@ -1,0 +1,142 @@
+<div class="main-content">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card card-user">
+        <div class="card-body">
+          <form [formGroup]="productForm" @boxAnimation>
+            <div class="row">
+              <div class="col-md-12">
+                <button class="btn btn-simple btn-round btn-sm float-left" (click)="filePicker.click()"><i
+                  class="fas fa-upload"></i> Product Images
+                </button>
+                <input
+                  type="file"
+                  #filePicker
+                  (change)="onImagePicked($event)"
+                />
+              </div>
+              <div class="col-md-12">
+                <div class="img-wrap">
+                  <img style="margin-top: 20px;" [src]="imagePreview" width="100" height="100" *ngIf="imagePreview">
+                  <br/><br/>
+                </div>
+              </div>
+              <div class="col-md-12">
+                <div class="form-group">
+                  <mat-form-field appearance="outline">
+                    <mat-select placeholder="Select categories" [(ngModel)]="selectedCategory"
+                                (ngModelChange)="onSelectedCategory()" formControlName="category">
+                      <mat-option *ngFor="let element of categories; let i = index" [value]="element._id">
+                        {{ element.name }}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="col-md-2">
+                <div class="checkboxs__container">
+                  <ng-container>
+                    <mat-checkbox (change)="isProductActive($event.checked)">active</mat-checkbox>
+                  </ng-container>
+                </div>
+              </div>
+
+            </div>
+            <hr class="divider"/>
+          </form>
+
+          <form [formGroup]="OptionsForm">
+            <div formArrayName="Options">
+              <div *ngFor="let option of getOptions();let i = index">
+                <div [formGroupName]="i" class="row" @boxAnimation>
+
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <input
+                        class="form-control"
+                        placeholder="Name"
+                        formControlName="name"
+                      />
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <input
+                        class="form-control"
+                        placeholder="Unit"
+                        formControlName="unit"
+                      />
+                    </div>
+                  </div>
+                  <ng-container formGroupName="translation">
+                    <ng-container formGroupName="ar">
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <input
+                            class="form-control"
+                            placeholder="الاسم"
+                            formControlName="name"
+                          />
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <input
+                            class="form-control"
+                            placeholder="وحده القياس"
+                            formControlName="unit"
+                          />
+                        </div>
+                      </div>
+                    </ng-container>
+                  </ng-container>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <input
+                        type="number"
+                        class="form-control"
+                        placeholder="price per unit"
+                        formControlName="pricePerUnit"
+                      />
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <input
+                        type="number"
+                        class="form-control"
+                        placeholder="increasing amount"
+                        formControlName="increasingAmount"
+                      />
+                    </div>
+                  </div>
+                  <div class="col-md-2">
+                    <div class="checkboxs__container">
+                      <ng-container>
+                        <mat-checkbox (change)="isActive($event.checked, option, i)">active</mat-checkbox>
+                      </ng-container>
+                    </div>
+                  </div>
+                </div>
+                <hr class="divider"/>
+              </div>
+              <ng-container *ngIf="!hideAddAnotherOptions">
+                <div class="col-md-12 text-center">
+                  <button class="btn btn-simple btn-round btn-sm" (click)="addAnotherOption()">Add Options</button>
+                </div>
+              </ng-container>
+            </div>
+          </form>
+          <div class="col-md-3">
+            <app-open-dialog-button
+              [loading]="loading"
+              (isClicked)="submit()"
+              name="{{ 'Submit' | translate }}"
+            ></app-open-dialog-button>
+          </div>
+          <!--End Another Options-->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

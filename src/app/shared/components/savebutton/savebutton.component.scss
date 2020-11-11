@@ -1,0 +1,66 @@
+/** Btn submit with loading **/
+
+@import '../../../../assets/scss/now-ui-dashboard/variables';
+
+@mixin center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@mixin ball {
+  @include center;
+  content: "";
+  display: block;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: #fff;
+  z-index: 2;
+  margin-top: 4px;
+  animation: ball 0.45s cubic-bezier(0, 0, 0.15, 1) alternate infinite;
+}
+
+.btn-1 {
+  color: #fff;
+  border-radius: 0;
+  height: 45px;
+  font-size: 18px;
+  margin: 30px auto;
+  padding: 0px 50px;
+
+  .loading {
+    &::before {
+      @include ball;
+      animation-delay: 0.15s;
+    }
+  }
+
+  &.loading-btn {
+    font-size: 0;
+
+    &::before {
+      @include ball;
+      margin-left: -10px;
+    }
+
+    &::after {
+      @include ball;
+      margin-left: 10px;
+      animation-delay: 0.3s;
+    }
+  }
+}
+
+@keyframes ball {
+  from {
+    transform: translateY(0) scaleY(0.8);
+  }
+
+  to {
+    transform: translateY(-10px);
+  }
+}
+
+/* End Submit Btn */

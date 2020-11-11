@@ -1,0 +1,29 @@
+<div class="dialog">
+  <div class="dialog__header">
+    <div class="title">
+      <h4>{{ "Update Area" | translate }}</h4>
+    </div>
+  </div>
+  <form [formGroup]="updateCategory">
+    <div class="form-group">
+      <input type="text" class="form-control" formControlName="enName" placeholder="Name"/>
+    </div>
+    <div class="form-group">
+      <input type="text" class="form-control" formControlName="arName" placeholder="Name"/>
+    </div>
+
+    <div style="display: flex; flex-direction: row; justify-content: space-between">
+      <app-open-dialog-button
+        [loading]="loading"
+        (isClicked)="UpdatedCategory()"
+        name="{{ 'Submit' | translate }}"
+      ></app-open-dialog-button>
+
+      <app-close-dialog-button
+        (isClicked)="close()"
+        name="{{ 'Close' | translate }}">
+      </app-close-dialog-button>
+    </div>
+
+  </form>
+</div>

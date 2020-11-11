@@ -1,0 +1,87 @@
+<div class="panel-header panel-header-sm"></div>
+<div class="main-content">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title-container">
+            <h4 class="card-title">{{ "Statistics" }}</h4>
+          </div>
+
+        </div>
+        <div class="card-body">
+
+          <div class="row">
+            <div class="col-md-6">
+              <div class="card text-white bg-success mb-3" style="min-height: 176px">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-md-4">
+                      <i style="font-size: 75px; margin-top: 14px;" class="fas fa-users"></i>
+                    </div>
+                    <div class="col-md-8 text-right">
+                      <span style="font-size: 40px;font-family: monospace;">{{statistics?.users}}</span>
+                      <p style="font-size: 25px;">Users</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="card text-white bg-info mb-3" style="min-height: 176px">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-md-4">
+                      <i style="font-size: 75px; margin-top: 14px;" class="fa fa-shopping-cart"></i>
+                    </div>
+                    <div class="col-md-8 text-right">
+                      <p  style="font-size: 25px;">Orders</p>
+                      <span style="font-size: 40px;font-family: monospace;">{{statistics?.number_of_orders}}</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="card text-white bg-primary mb-3" style="min-height: 176px">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-md-4">
+                      <i style="font-size: 75px; margin-top: 14px;" class="fab fa-first-order"></i>
+                    </div>
+                    <div class="col-md-8 text-right">
+                      <p style="font-size: 25px;">total revenue</p>
+                      <span style="font-size: 40px;font-family: monospace;">{{statistics?.total_revenue}}</span>
+                    </div>
+                  </div>
+                 </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="card text-white bg-primary mb-3" style="min-height: 176px">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-md-4">
+                      <i style="font-size: 75px; margin-top: 14px;" class="fas fa-user"></i>
+                    </div>
+                    <div class="col-md-8 text-right">
+                      <p style="font-size: 25px;">best selling product</p>
+                      <span style="font-size: 25px;font-family: monospace;">{{statistics?.best_seller_product?.name}}</span>
+
+                    </div>
+                  </div>
+                 </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+

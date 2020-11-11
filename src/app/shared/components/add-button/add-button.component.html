@@ -1,0 +1,10 @@
+<button
+  class=" btn-block custom-btn btn-1"
+  [ngClass]="{ 'loading-btn': loading }"
+  (click)="handleIsClicked()"
+  mat-button
+>
+  <i class="fas fa-plus"></i>
+
+  <span class="loading" *ngIf="loading"> </span>
+</button>

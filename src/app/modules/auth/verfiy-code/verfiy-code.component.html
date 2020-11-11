@@ -1,0 +1,24 @@
+<!------ Include the above in your HEAD tag ---------->
+
+<div class="container login-container">
+  <div class="row">
+    <div class="col-md-12 login-form-1">
+      <h3>Verify Code</h3>
+      <form [formGroup]="verifyCodeForm">
+
+        <div class="form-group">
+          <input
+            type="number"
+            formControlName="token"
+            matInput
+            placeholder="Enter Your Verify Code"
+            class="form-control"
+          />
+        </div>
+        <div class="form-group">
+          <input type="submit" class="btnSubmit" value="Login" (click)="verify()" />
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
