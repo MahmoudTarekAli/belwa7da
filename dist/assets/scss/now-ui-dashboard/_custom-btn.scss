@@ -1,0 +1,53 @@
+.submit__btn {
+  height: 45px;
+  border-radius: 0 !important;
+  margin: 25px auto 0 auto ;
+  width: 150px;
+  color: #fff;
+  background-image: linear-gradient(to right, #261d36, #5c4683);
+  transition: all 0.3s ease-in-out;
+  font-family: $sans-serif-family;
+  [dir="rtl"] & {
+    font-family: $cairo-family;
+  }
+
+  &:disabled,
+  &[disabled],
+  &.disabled {
+    color: #777 !important;
+  }
+
+  .loading {
+    &::before {
+      @include ball;
+      animation-delay: 0.15s;
+    }
+  }
+
+  &.loading-btn {
+    font-size: 0;
+
+    &::before {
+      @include ball;
+      margin-left: -10px;
+    }
+
+    &::after {
+      @include ball;
+      margin-left: 10px;
+      animation-delay: 0.3s;
+    }
+  }
+}
+
+@keyframes ball {
+  from {
+    transform: translateY(0) scaleY(0.8);
+  }
+
+  to {
+    transform: translateY(-10px);
+  }
+}
+
+/* End Submit Btn */
