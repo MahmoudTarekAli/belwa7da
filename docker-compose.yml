@@ -10,9 +10,9 @@ services:
       - 3005:3000
     restart: unless-stopped
     environment:
-      VIRTUAL_HOST: dashboard.alhindawih.com
+      VIRTUAL_HOST: dashboard.blwahda.com
       VIRTUAL_PORT: 3005
-      LETSENCRYPT_HOST: dashboard.alhindawih.com
+      LETSENCRYPT_HOST: dashboard.blwahda.com
       LETSENCRYPT_EMAIL: mohammedsalaah96@gmail.com
 networks:
   default:
