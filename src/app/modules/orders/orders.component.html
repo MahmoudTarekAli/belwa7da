@@ -59,6 +59,12 @@
                   {{element?.priceInfo?.total}}
                 </mat-cell>
               </ng-container>
+              <ng-container matColumnDef="created_at">
+                <mat-header-cell *matHeaderCellDef>{{ "created at"  }}</mat-header-cell>
+                <mat-cell *matCellDef="let element">
+                  {{element?.created_at | date: 'yyyy/MM/dd'}}
+                </mat-cell>
+              </ng-container>
               <ng-container matColumnDef="Status">
                 <mat-header-cell *matHeaderCellDef>{{ "Status"  }}</mat-header-cell>
                 <mat-cell *matCellDef="let element">

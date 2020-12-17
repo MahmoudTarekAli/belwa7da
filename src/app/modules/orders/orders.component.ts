@@ -27,6 +27,7 @@ export class OrdersComponent implements OnInit, AfterViewInit {
     'user',
     'product_name',
     'price',
+    'created_at',
     'Status',
     'Actions'
   ];

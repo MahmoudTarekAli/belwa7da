@@ -54,6 +54,12 @@
                       </h6>
                       <p>{{ order?.priceInfo?.total }}</p>
                     </section>
+                    <section>
+                      <h6 class="basic__info__subtitle">
+                        Price
+                      </h6>
+                      <p>{{ order?.priceInfo?.total }}</p>
+                    </section>
                   </article>
                 </article>
               </section>
@@ -98,21 +104,46 @@
                 </article>
               </section>
               <!--Start Product section-->
-              <section class="col-md-12">
-                <article class="basic__info">
-                  <header>
-                    <h4 class="basic__info__title">Product Info</h4>
-                  </header>
-                  <ng-container *ngFor="let product of order.products">
-                    <article class="basic__info__itemsContainer">
-                      <h6 style="font-size: 18px">product Category</h6>
-                      <p style="font-size: 16px">{{ product?.category?.name}}</p>
-                      <h6 style="font-size: 18px">prodcut Name</h6>
-                      <p style="font-size: 16px">{{product?.selectedOption?.name}}</p>
-                    </article>
-                  </ng-container>
-                </article>
-              </section>
+
+              <div class="col-md-12">
+                <header>
+                  <h4 class="basic__info__title">Order Products</h4>
+                </header>
+                <mat-accordion class="example-headers-align" multi *ngFor="let product of order.products">
+                  <mat-expansion-panel class="mb-3 example-headers-align" >
+                    <mat-expansion-panel-header>
+                      <mat-panel-title>
+                        {{product?.selectedOption?.name}}
+                      </mat-panel-title>
+                      <mat-panel-description>
+                        <p>{{ product?.category?.name}}</p>
+                        <p>{{ product?.priceInfo?.total}} LE</p>
+
+                      </mat-panel-description>
+                    </mat-expansion-panel-header>
+                    <section class="col-md-12">
+                      <article class="basic__info">
+                        <header>
+                          <h4 class="basic__info__title">Product Info</h4>
+                        </header>
+                        <ng-container>
+                          <article class="basic__info__itemsContainer">
+                            <h6 style="font-size: 18px">product Category</h6>
+                            <p style="font-size: 16px">{{ product?.category?.name}}</p>
+                            <h6 style="font-size: 18px">prodcut Name</h6>
+                            <p style="font-size: 16px">{{product?.selectedOption?.name}}</p>
+                            <h6 style="font-size: 18px">amount</h6>
+                            <p style="font-size: 16px">{{product?.priceInfo?.amount}}</p>
+                            <h6 style="font-size: 18px">total</h6>
+                            <p style="font-size: 16px">Total Price : {{product?.priceInfo?.total}}</p>
+                            <p style="font-size: 16px">Price Per Unit : {{product?.priceInfo?.pricePerUnit}}</p>
+                          </article>
+                        </ng-container>
+                      </article>
+                    </section>
+                  </mat-expansion-panel>
+                </mat-accordion>
+              </div>
               <!--End Product section-->
             </article>
           </ng-template>

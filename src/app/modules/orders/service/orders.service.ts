@@ -19,7 +19,7 @@ export class OrdersService {
     params = params.append('page', (page).toString());
     params = params.append('pagination', 'true');
     params = params.append('order_number', search.toString());
-    return this.http.get(`${this.apiUrl}/orders`, {
+    return this.http.get(`${this.apiUrl}/orders?created_at`, {
       params,
       headers,
       observe: 'response'
