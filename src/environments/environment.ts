@@ -5,5 +5,5 @@
 
 export const environment = {
   production: false,
-  base_url: 'https://api.blwahda.com'
+  base_url: 'http://localhost:8081'
 };

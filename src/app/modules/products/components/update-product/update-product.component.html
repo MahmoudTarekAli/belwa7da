@@ -17,13 +17,13 @@
                   multiple
                   #filePicker
                   hidden
-                  (change)="onSelectFile($event)"
+                  (change)="onImagePicked($event)"
                 />
               </div>
               <div class="col-md-12">
-                <div class="img-wrap" *ngFor="let url of PreviewImages">
+                <div class="img-wrap">
                   <img
-                    [src]="url"
+                    [src]="imagePreview"
                     class="rounded mb-3 images"
                     width="150"
                     height="120"

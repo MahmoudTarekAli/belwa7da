@@ -18,7 +18,7 @@ export class UpdateProductComponent implements OnInit, AfterViewInit {
   image: any;
   loading = false;
   Images = [];
-  PreviewImages = [];
+  imagePreview: any;
   items = [];
   categoriesArr: any;
   OptionsForm: FormGroup;
@@ -57,28 +57,9 @@ export class UpdateProductComponent implements OnInit, AfterViewInit {
     });
     this.updateProduct.controls.category.setValue(this.product.category._id);
     this.updateProduct.controls.active.setValue(this.product.active);
-    this.PreviewImages.push(this.product.image);
+    this.imagePreview = this.product.image;
 
     this.dataSource = new MatTableDataSource<any>(this.product.options);
-  }
-
-  onSelectFile(event) {
-    if (event.target.files.length > 0) {
-      const filesAmount = event.target.files.length;
-      for (let i = 0; i < filesAmount; i++) {
-        const Image = event.target.files[i];
-        this.Images.push(Image);
-      }
-      const snapImages = [];
-      for (const file of this.Images) {
-        const reader = new FileReader();
-        reader.onload = (e: any) => {
-          snapImages.push(e.target.result);
-        };
-        reader.readAsDataURL(file);
-      }
-      this.PreviewImages = snapImages;
-    }
   }
 
   isActive(isChecked, option, index) {
@@ -115,6 +96,23 @@ export class UpdateProductComponent implements OnInit, AfterViewInit {
 
   close() {
     this.dialogRef.closeAll();
+  }
+
+
+  onImagePicked(event: Event) {
+    const file = (event.target as HTMLInputElement).files[0];
+    if (!file) {
+      return;
+    }
+    const mimeType = file.type;
+    if (mimeType.match(/image\/*/) == null) {
+    }
+    this.image = file;
+    const reader = new FileReader();
+    reader.onload = () => {
+      this.imagePreview = reader.result;
+    };
+    reader.readAsDataURL(file);
   }
 
   submit() {
