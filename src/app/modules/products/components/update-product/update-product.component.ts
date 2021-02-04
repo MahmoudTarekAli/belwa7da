@@ -25,7 +25,7 @@ export class UpdateProductComponent implements OnInit, AfterViewInit {
   hideAddAnotherOptions = false;
   options: [];
   dataSource: MatTableDataSource<any>;
-  edit = false;
+  edit: boolean[];
 
   constructor(
     private fg: FormBuilder,
@@ -61,6 +61,8 @@ export class UpdateProductComponent implements OnInit, AfterViewInit {
     this.imagePreview = this.product.image;
 
     this.dataSource = new MatTableDataSource<any>(this.product.options);
+
+    this.edit = Array(this.product.options.length).fill(false);
   }
 
   isActive(isChecked, option, index) {
@@ -92,16 +94,18 @@ export class UpdateProductComponent implements OnInit, AfterViewInit {
 
   deleteOption(i) {
     this.dataSource.data.splice(i, 1);
+    this.edit.splice(i, 1);
     this.dataSource._updateChangeSubscription();
   }
 
   updateOption(i) {
-    this.edit = true;
+    console.log(this.edit);
+    this.edit[i] = true;
     this.dataSource._updateChangeSubscription();
   }
 
-  submitOption() {
-    this.edit = false;
+  submitOption(i) {
+    this.edit[i] = false;
   }
 
   close() {

@@ -66,16 +66,16 @@
           >
             <mat-table [dataSource]="dataSource" role="grid">
               <!-- Position Column -->
-              <ng-container matColumnDef="Image">
-                <mat-header-cell *matHeaderCellDef>
-                  {{ 'Image' }}
-                </mat-header-cell>
-                <mat-cell *matCellDef="let element">
-                  <span>
-                    <img [src]="element.image ? element.image : ''" />
-                  </span>
-                </mat-cell>
-              </ng-container>
+<!--              <ng-container matColumnDef="Image">-->
+<!--                <mat-header-cell *matHeaderCellDef>-->
+<!--                  {{ 'Image' }}-->
+<!--                </mat-header-cell>-->
+<!--                <mat-cell *matCellDef="let element">-->
+<!--                  <span>-->
+<!--                    <img [src]="element.image ? element.image : ''" />-->
+<!--                  </span>-->
+<!--                </mat-cell>-->
+<!--              </ng-container>-->
 
               <!-- Name Column -->
               <ng-container matColumnDef="name">
@@ -83,21 +83,37 @@
                   {{ 'Name' | translate }}
                 </mat-header-cell>
                 <mat-cell
-                  *matCellDef="let element"
+                  *matCellDef="let element; let i = index"
                   [matTooltip]="element.name"
                   matTooltipPosition="above"
                 >
-                  <span>{{ element.name }}</span>
+                  <span *ngIf="!edit[i]">{{ element.name }}</span>
+                  <div class="form-group m-1" *ngIf="edit[i]">
+                    <input
+                      class="form-control"
+                      placeholder="Unit"
+                      type="text"
+                      [(ngModel)]="element.name"
+                    />
+                  </div>
                 </mat-cell>
               </ng-container>
               <ng-container matColumnDef="unit">
                 <mat-header-cell *matHeaderCellDef>
                   {{ 'Unit' | translate }}
                 </mat-header-cell>
-                <mat-cell *matCellDef="let element">
-                  <span>
+                <mat-cell *matCellDef="let element; let i = index">
+                  <span *ngIf="!edit[i]">
                     {{ element?.unit }}
                   </span>
+                  <div class="form-group m-1" *ngIf="edit[i]">
+                    <input
+                      class="form-control"
+                      placeholder="Unit"
+                      type="text"
+                      [(ngModel)]="element.unit"
+                    />
+                  </div>
                 </mat-cell>
               </ng-container>
 
@@ -106,11 +122,19 @@
                   {{ 'Price per unit' | translate }}
                 </mat-header-cell>
                 <mat-cell
-                  *matCellDef="let element"
+                  *matCellDef="let element; let i = index"
                   [matTooltip]="element.pricePerUnit"
                   matTooltipPosition="above"
                 >
-                  <span>{{ element.pricePerUnit }}</span>
+                  <span *ngIf="!edit[i]">{{ element.pricePerUnit }}</span>
+                  <div class="form-group m-1" *ngIf="edit[i]">
+                    <input
+                      class="form-control"
+                      placeholder="Unit"
+                      type="number"
+                      [(ngModel)]="element.pricePerUnit"
+                    />
+                  </div>
                 </mat-cell>
               </ng-container>
 
@@ -119,12 +143,12 @@
                   {{ 'Increasing amount' | translate }}
                 </mat-header-cell>
                 <mat-cell
-                  *matCellDef="let element"
+                  *matCellDef="let element; let i = index"
                   [matTooltip]="element.increasingAmount"
                   matTooltipPosition="above"
                 >
-                  <span *ngIf="!edit">{{ element.increasingAmount }}</span>
-                  <div class="form-group" *ngIf="edit">
+                  <span *ngIf="!edit[i]">{{ element.increasingAmount }}</span>
+                  <div class="form-group m-1" *ngIf="edit[i]">
                     <input
                       class="form-control"
                       placeholder="Unit"
@@ -144,8 +168,11 @@
                   <button mat-icon-button (click)="deleteOption(i)">
                     <mat-icon>delete</mat-icon>
                   </button>
-                  <button mat-icon-button (click)="updateOption(i)">
+                  <button mat-icon-button *ngIf="!edit[i]" (click)="updateOption(i)">
                     <mat-icon color="primary">edit</mat-icon>
+                  </button>
+                  <button mat-icon-button *ngIf="edit[i]" (click)="submitOption(i)">
+                    <mat-icon color="primary">submit</mat-icon>
                   </button>
                 </mat-cell>
               </ng-container>
