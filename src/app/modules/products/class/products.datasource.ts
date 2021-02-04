@@ -1,11 +1,11 @@
-import { CollectionViewer, DataSource } from "@angular/cdk/collections";
-import { Observable, BehaviorSubject, Subject, of } from "rxjs";
-import { catchError, finalize, first, map, filter, tap } from "rxjs/operators";
-import { Injectable } from "@angular/core";
+import { CollectionViewer, DataSource } from '@angular/cdk/collections';
+import { Observable, BehaviorSubject, Subject, of } from 'rxjs';
+import { catchError, finalize, first, map, filter, tap } from 'rxjs/operators';
+import { Injectable } from '@angular/core';
 import { HttpProductsService } from '../service/products.service';
 
 @Injectable({
-  providedIn: "root"
+  providedIn: 'root',
 })
 export class ProductsDataSource implements DataSource<any> {
   public dataSubjectProducts = new BehaviorSubject<any[]>([]);
@@ -22,11 +22,11 @@ export class ProductsDataSource implements DataSource<any> {
 
   empty = false;
 
-  constructor(private httpProductsService: HttpProductsService) { }
+  constructor(private httpProductsService: HttpProductsService) {}
 
   connect(): Observable<any[]> {
     return this.dataSubjectProducts.pipe(
-      tap(data => {
+      tap((data) => {
         this.empty = !data.length;
       })
     );
@@ -38,7 +38,6 @@ export class ProductsDataSource implements DataSource<any> {
   }
 
   loadProducts$($pageNumber, $search) {
-
     this.loadingSubject.next(true);
     this.httpProductsService
       .getAllProducts($pageNumber, $search)
@@ -47,7 +46,7 @@ export class ProductsDataSource implements DataSource<any> {
         catchError(() => of([])),
         finalize(() => this.loadingSubject.next(false))
       )
-      .subscribe(data => {
+      .subscribe((data) => {
         this.dataSubjectProducts.next(data.body.products);
         // this.dataSubjectProducts.next(data.body);
         console.log(data.body);
@@ -60,8 +59,6 @@ export class ProductsDataSource implements DataSource<any> {
   }
 
   isServiceEmpty$() {
-    return this.dataSubjectProducts.pipe(
-      filter(data => data.length < 1)
-    );
+    return this.dataSubjectProducts.pipe(filter((data) => data.length < 1));
   }
 }

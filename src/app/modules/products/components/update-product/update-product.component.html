@@ -6,7 +6,12 @@
           <form [formGroup]="updateProduct" @boxAnimation>
             <div class="row">
               <div class="col-md-12">
-                <button class="btn btn-simple btn-round btn-sm float-left" (click)="filePicker.click()"><i class="fas fa-upload"></i>  Product Images</button>
+                <button
+                  class="btn btn-simple btn-round btn-sm float-left"
+                  (click)="filePicker.click()"
+                >
+                  <i class="fas fa-upload"></i> Product Images
+                </button>
                 <input
                   type="file"
                   multiple
@@ -16,66 +21,225 @@
                 />
               </div>
               <div class="col-md-12">
-                <div class="img-wrap" *ngFor="let url of PreviewImages"  >
-                  <img [src]="url" class="rounded mb-3 images" width="150" height="120">
-                </div>
-              </div>
-              <div class="col-md-12">
-                <div class="form-group">
-                  <input
-                    type="text"
-                    class="form-control"
-                    formControlName="name"
-                    placeholder="Name"
-                  />
-                </div>
-              </div>
-              <div class="col-md-12">
-                <div class="form-group">
-                  <input
-                    type="text"
-                    class="form-control"
-                    formControlName="description"
-                    placeholder="Description"
-                  />
-                </div>
-              </div>
-              <div class="col-md-12">
-                <div class="form-group">
-                  <input
-                    type="number"
-                    class="form-control"
-                    formControlName="price"
-                    placeholder="Price"
-                  />
-                </div>
-              </div>
-              <div class="col-md-12">
-                <div class="form-group">
-                  <input
-                    type="number"
-                    class="form-control"
-                    formControlName="inventory"
-                    placeholder="inventory"
+                <div class="img-wrap" *ngFor="let url of PreviewImages">
+                  <img
+                    [src]="url"
+                    class="rounded mb-3 images"
+                    width="150"
+                    height="120"
                   />
                 </div>
               </div>
               <div class="col-md-12">
                 <div class="form-group">
                   <mat-form-field appearance="outline">
-                    <mat-select placeholder="Select categories"  [(ngModel)]="selectedCategory"
-                                   formControlName="category">
-                      <mat-option *ngFor="let element of categoriesArr; let i = index" [value]="element._id">
+                    <mat-select
+                      placeholder="Select categories"
+                      formControlName="category"
+                    >
+                      <mat-option
+                        *ngFor="let element of categoriesArr; let i = index"
+                        [value]="element._id"
+                      >
                         {{ element.name }}
                       </mat-option>
                     </mat-select>
                   </mat-form-field>
                 </div>
-
               </div>
-
+              <div class="col-md-2">
+                <div class="checkboxs__container">
+                  <ng-container>
+                    <mat-checkbox formControlName="active">
+                      active
+                    </mat-checkbox>
+                  </ng-container>
+                </div>
+              </div>
             </div>
             <hr class="divider" />
+          </form>
+
+          <div
+            class="tabel__container"
+
+          >
+            <mat-table [dataSource]="dataSource" role="grid">
+              <!-- Position Column -->
+              <ng-container matColumnDef="Image">
+                <mat-header-cell *matHeaderCellDef>
+                  {{ 'Image' }}
+                </mat-header-cell>
+                <mat-cell *matCellDef="let element">
+                  <span>
+                    <img [src]="element.image ? element.image : ''" />
+                  </span>
+                </mat-cell>
+              </ng-container>
+
+              <!-- Name Column -->
+              <ng-container matColumnDef="name">
+                <mat-header-cell *matHeaderCellDef>
+                  {{ 'Name' | translate }}
+                </mat-header-cell>
+                <mat-cell
+                  *matCellDef="let element"
+                  [matTooltip]="element.name"
+                  matTooltipPosition="above"
+                >
+                  <span>{{ element.name }}</span>
+                </mat-cell>
+              </ng-container>
+              <ng-container matColumnDef="unit">
+                <mat-header-cell *matHeaderCellDef>
+                  {{ 'Unit' | translate }}
+                </mat-header-cell>
+                <mat-cell *matCellDef="let element">
+                  <span>
+                    {{ element?.unit }}
+                  </span>
+                </mat-cell>
+              </ng-container>
+
+              <ng-container matColumnDef="pricePerUnit">
+                <mat-header-cell *matHeaderCellDef>
+                  {{ 'Price per unit' | translate }}
+                </mat-header-cell>
+                <mat-cell
+                  *matCellDef="let element"
+                  [matTooltip]="element.pricePerUnit"
+                  matTooltipPosition="above"
+                >
+                  <span>{{ element.pricePerUnit }}</span>
+                </mat-cell>
+              </ng-container>
+
+              <ng-container matColumnDef="increasingAmount">
+                <mat-header-cell *matHeaderCellDef>
+                  {{ 'Increasing amount' | translate }}
+                </mat-header-cell>
+                <mat-cell
+                  *matCellDef="let element"
+                  [matTooltip]="element.increasingAmount"
+                  matTooltipPosition="above"
+                >
+                  <span>{{ element.increasingAmount }}</span>
+                </mat-cell>
+              </ng-container>
+
+              <ng-container matColumnDef="Actions">
+                <mat-header-cell *matHeaderCellDef>
+                  {{ 'actions' | translate }}
+                </mat-header-cell>
+                <mat-cell *matCellDef="let element; let i = index">
+                  <button mat-icon-button (click)="deleteOption(i)">
+                    <mat-icon>delete</mat-icon>
+                  </button>
+                </mat-cell>
+              </ng-container>
+
+              <mat-header-row
+                *matHeaderRowDef="displayedColumns"
+              ></mat-header-row>
+              <mat-row
+                *matRowDef="let row; columns: displayedColumns; let i = index"
+              ></mat-row>
+            </mat-table>
+
+            <mat-paginator
+              showFirstLastButtons
+              [pageSize]="10"
+            ></mat-paginator>
+          </div>
+
+          <form [formGroup]="OptionsForm">
+            <div formArrayName="Options">
+              <div *ngFor="let option of getOptions(); let i = index">
+                <div [formGroupName]="i" class="row" @boxAnimation>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <input
+                        class="form-control"
+                        placeholder="Name"
+                        formControlName="name"
+                      />
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <input
+                        class="form-control"
+                        placeholder="Unit"
+                        formControlName="unit"
+                      />
+                    </div>
+                  </div>
+                  <ng-container formGroupName="translation">
+                    <ng-container formGroupName="ar">
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <input
+                            class="form-control"
+                            placeholder="الاسم"
+                            formControlName="name"
+                          />
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <input
+                            class="form-control"
+                            placeholder="وحده القياس"
+                            formControlName="unit"
+                          />
+                        </div>
+                      </div>
+                    </ng-container>
+                  </ng-container>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <input
+                        type="number"
+                        class="form-control"
+                        placeholder="price per unit"
+                        formControlName="pricePerUnit"
+                      />
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <input
+                        type="number"
+                        class="form-control"
+                        placeholder="increasing amount"
+                        formControlName="increasingAmount"
+                      />
+                    </div>
+                  </div>
+                  <div class="col-md-2">
+                    <div class="checkboxs__container">
+                      <ng-container>
+                        <mat-checkbox
+                          (change)="isActive($event.checked, option, i)"
+                          >active</mat-checkbox
+                        >
+                      </ng-container>
+                    </div>
+                  </div>
+                </div>
+                <hr class="divider" />
+              </div>
+              <ng-container *ngIf="!hideAddAnotherOptions">
+                <div class="col-md-12 text-center">
+                  <button
+                    class="btn btn-simple btn-round btn-sm"
+                    (click)="addAnotherOption()"
+                  >
+                    Add Options
+                  </button>
+                </div>
+              </ng-container>
+            </div>
           </form>
 
           <div class="col-md-3">

@@ -4,7 +4,9 @@ import {
   Optional,
   ElementRef,
   ViewChild,
-  ChangeDetectorRef, AfterViewInit, OnDestroy
+  ChangeDetectorRef,
+  AfterViewInit,
+  OnDestroy,
 } from '@angular/core';
 import {
   map,
@@ -12,26 +14,23 @@ import {
   debounceTime,
   tap,
   takeUntil,
-  filter
+  filter,
 } from 'rxjs/operators';
-import {MatDialog, MatPaginator} from '@angular/material';
-import {fromEvent} from 'rxjs/internal/observable/fromEvent';
-import {Subject} from 'rxjs';
-import {NotificationService} from '../../shared/services/notifications/notification.service';
-import {TranslateService} from '@ngx-translate/core';
-import {ProductsDataSource} from './class/products.datasource';
-import {HttpProductsService} from './service/products.service';
-import {Router} from '@angular/router';
-import {UpdateProductComponent} from './components/update-product/update-product.component';
-import {CreateProductComponent} from './components/create-product/create-product.component';
+import { MatDialog, MatPaginator } from '@angular/material';
+import { fromEvent } from 'rxjs/internal/observable/fromEvent';
+import { Subject } from 'rxjs';
+import { NotificationService } from '../../shared/services/notifications/notification.service';
+import { TranslateService } from '@ngx-translate/core';
+import { ProductsDataSource } from './class/products.datasource';
+import { HttpProductsService } from './service/products.service';
+import { Router } from '@angular/router';
+import { UpdateProductComponent } from './components/update-product/update-product.component';
+import { CreateProductComponent } from './components/create-product/create-product.component';
 
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
-  styleUrls: [
-    './products.component.scss',
-    '../tabel.scss'
-  ]
+  styleUrls: ['./products.component.scss', '../tabel.scss'],
 })
 export class ProductsComponent implements OnInit, AfterViewInit, OnDestroy {
   displayedColumns: string[] = [
@@ -40,7 +39,7 @@ export class ProductsComponent implements OnInit, AfterViewInit, OnDestroy {
     'category',
     'price',
     'created_at',
-    'Actions'
+    'Actions',
   ];
   dataSource = new ProductsDataSource(this.httpProductsService);
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -50,7 +49,6 @@ export class ProductsComponent implements OnInit, AfterViewInit, OnDestroy {
   noCities = false;
   totalPromotions: number;
   status = '';
-  selectedCategory: any;
   @ViewChild('searchInput') search: ElementRef;
 
   constructor(
@@ -60,8 +58,7 @@ export class ProductsComponent implements OnInit, AfterViewInit, OnDestroy {
     private notificationService: NotificationService,
     public translate: TranslateService,
     private router: Router
-  ) {
-  }
+  ) {}
 
   ngOnInit() {
     this.refreshServicesData();
@@ -70,16 +67,13 @@ export class ProductsComponent implements OnInit, AfterViewInit, OnDestroy {
   refreshServicesData() {
     this.noCities = false;
     this.dataSource = new ProductsDataSource(this.httpProductsService);
-    this.dataSource.loadProducts$(
-      0,
-      this.search.nativeElement.value,
-    );
+    this.dataSource.loadProducts$(0, this.search.nativeElement.value);
     this.dataSource.mata$
       .pipe(
-        filter(x => x !== undefined),
+        filter((x) => x !== undefined),
         takeUntil(this.$destroy)
       )
-      .subscribe(totalNumber => this.totalPromotions = totalNumber);
+      .subscribe((totalNumber) => (this.totalPromotions = totalNumber));
 
     this.changeDetectorRefs.detectChanges();
   }
@@ -91,14 +85,12 @@ export class ProductsComponent implements OnInit, AfterViewInit, OnDestroy {
       disableClose: false,
       autoFocus: true,
       position: {
-        left: '30%'
-      }
+        left: '30%',
+      },
     });
-    dialogRef
-      .afterClosed()
-      .subscribe(next => {
-        this.loadPage();
-      });
+    dialogRef.afterClosed().subscribe((next) => {
+      this.loadPage();
+    });
   }
 
   updateProduct(element) {
@@ -109,32 +101,34 @@ export class ProductsComponent implements OnInit, AfterViewInit, OnDestroy {
       disableClose: false,
       autoFocus: true,
       position: {
-        left: '30%'
-      }
+        left: '30%',
+      },
     });
-    dialogRef
-      .afterClosed()
-      .subscribe(() => {
-        this.loadPage();
-      });
+    dialogRef.afterClosed().subscribe(() => {
+      this.loadPage();
+    });
   }
 
   deleteProduct(element) {
-    this.httpProductsService.deleteProduct(element._id).subscribe(data => {
-      if (data.status === 200) {
-        this.notificationService.successNotification(`Product ${element.name} Deleted`);
-        this.refreshServicesData();
+    this.httpProductsService.deleteProduct(element._id).subscribe(
+      (data) => {
+        if (data.status === 200) {
+          this.notificationService.successNotification(
+            `Product ${element.options[0].name} Deleted`
+          );
+          this.refreshServicesData();
+        }
+      },
+      (err) => {
+        this.notificationService.errorNotification(err.error.message);
       }
-    }, err => {
-      this.notificationService.errorNotification(err.error.message);
-    });
+    );
   }
 
   goToCreateProduct() {
     const getCurrentLang = localStorage.getItem('LOCALIZE_DEFAULT_LANGUAGE');
     this.router.navigate([`${getCurrentLang}/create-product`]);
   }
-
 
   ngAfterViewInit() {
     this.paginator.page.pipe(tap(() => this.loadPage())).subscribe();
@@ -149,14 +143,12 @@ export class ProductsComponent implements OnInit, AfterViewInit, OnDestroy {
         })
       )
       .subscribe();
-
-
   }
 
   loadPage() {
     this.dataSource.loadProducts$(
       this.paginator.pageIndex,
-      this.search.nativeElement.value,
+      this.search.nativeElement.value
     );
   }
 
@@ -167,5 +159,4 @@ export class ProductsComponent implements OnInit, AfterViewInit, OnDestroy {
     this.$destroy.next();
     this.$destroy.complete();
   }
-
 }

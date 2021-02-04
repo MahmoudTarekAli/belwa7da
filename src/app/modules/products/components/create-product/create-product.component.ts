@@ -1,22 +1,24 @@
-import {Component, OnInit, Optional, OnDestroy, ViewChild, ElementRef} from '@angular/core';
-import {FormBuilder, FormGroup, Validators, FormArray} from '@angular/forms';
-import {BoxAnimation} from '../../../../shared/animations/box-animation';
-import {CategoriesService} from '../../../categories/service/categories.service';
-import {NotificationService} from '../../../../shared/services/notifications/notification.service';
-import {MatDialogRef} from '@angular/material';
-import {HttpProductsService} from '../../service/products.service';
+import {
+  Component,
+  OnInit,
+  Optional,
+  OnDestroy,
+  ViewChild,
+  ElementRef,
+} from '@angular/core';
+import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
+import { BoxAnimation } from '../../../../shared/animations/box-animation';
+import { CategoriesService } from '../../../categories/service/categories.service';
+import { NotificationService } from '../../../../shared/services/notifications/notification.service';
+import { MatDialogRef } from '@angular/material';
+import { HttpProductsService } from '../../service/products.service';
 
 @Component({
   selector: 'app-product',
   templateUrl: './create-product.component.html',
-  styleUrls: [
-    './create-product.component.scss',
-  ],
-  animations: [
-    BoxAnimation
-  ]
+  styleUrls: ['./create-product.component.scss'],
+  animations: [BoxAnimation],
 })
-
 export class CreateProductComponent implements OnInit, OnDestroy {
   productForm: FormGroup;
   OptionsForm: FormGroup;
@@ -35,12 +37,11 @@ export class CreateProductComponent implements OnInit, OnDestroy {
     private httpProductService: HttpProductsService,
     private notifcationService: NotificationService,
     private categoryService: CategoriesService,
-    public dialogRef: MatDialogRef<CreateProductComponent>,
-  ) {
-  }
+    public dialogRef: MatDialogRef<CreateProductComponent>
+  ) {}
 
   ngOnInit() {
-    this.categoryService.getAllCategory().subscribe(data => {
+    this.categoryService.getAllCategory().subscribe((data) => {
       if (data.status === 200) {
         this.categories = data.body;
       }
@@ -48,12 +49,12 @@ export class CreateProductComponent implements OnInit, OnDestroy {
     this.productForm = this.fg.group({
       category: ['', Validators.required],
       active: [true],
-      options: this.fg.array([])
+      options: this.fg.array([]),
     });
     this.OptionsForm = this.fg.group({
       Options: this.fg.array([]),
     });
-
+    this.addAnotherOption();
   }
 
   onSelectFile(event) {
@@ -76,7 +77,7 @@ export class CreateProductComponent implements OnInit, OnDestroy {
   }
 
   addAnotherOption() {
-    const control = (<FormArray>this.OptionsForm.controls['Options']);
+    const control = <FormArray>this.OptionsForm.controls['Options'];
     control.push(
       this.fg.group({
         name: ['', Validators.required],
@@ -106,9 +107,7 @@ export class CreateProductComponent implements OnInit, OnDestroy {
     this.productForm.controls.active.setValue(isChecked);
   }
 
-
-  ngOnDestroy() {
-  }
+  ngOnDestroy() {}
 
   // helper function that check if options does not exist
   isOptionsEmpty(options) {
@@ -116,7 +115,6 @@ export class CreateProductComponent implements OnInit, OnDestroy {
       if (options[i] === null) {
         return true;
       }
-
     }
 
     return false;
@@ -128,8 +126,7 @@ export class CreateProductComponent implements OnInit, OnDestroy {
     return productData;
   }
 
-  onSelectedCategory() {
-  }
+  onSelectedCategory() {}
 
   onImagePicked(event: Event) {
     const file = (event.target as HTMLInputElement).files[0];
@@ -156,15 +153,18 @@ export class CreateProductComponent implements OnInit, OnDestroy {
     formData.append('image', this.image);
     formData.append('data', JSON.stringify(productData));
     this.isOptionsEmpty(productData.options);
-    this.httpProductService.sendProductData(formData).subscribe(data => {
-      if (data.status === 200) {
-        this.dialogRef.close();
-        this.notifcationService.successNotification('The product created');
+    this.httpProductService.sendProductData(formData).subscribe(
+      (data) => {
+        if (data.status === 200) {
+          this.dialogRef.close();
+          this.notifcationService.successNotification('The product created');
+          this.loading = false;
+        }
+      },
+      (err) => {
         this.loading = false;
+        this.notifcationService.errorNotification(err.message);
       }
-    }, err => {
-      this.loading = false;
-      this.notifcationService.errorNotification(err.message);
-    });
+    );
   }
 }
