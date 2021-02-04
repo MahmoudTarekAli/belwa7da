@@ -123,7 +123,16 @@
                   [matTooltip]="element.increasingAmount"
                   matTooltipPosition="above"
                 >
-                  <span>{{ element.increasingAmount }}</span>
+                  <span *ngIf="!edit">{{ element.increasingAmount }}</span>
+                  <div class="form-group" *ngIf="edit">
+                    <input
+                      class="form-control"
+                      placeholder="Unit"
+                      type="number"
+                      [(ngModel)]="element.increasingAmount"
+                    />
+                  </div>
+
                 </mat-cell>
               </ng-container>
 
@@ -134,6 +143,9 @@
                 <mat-cell *matCellDef="let element; let i = index">
                   <button mat-icon-button (click)="deleteOption(i)">
                     <mat-icon>delete</mat-icon>
+                  </button>
+                  <button mat-icon-button (click)="updateOption(i)">
+                    <mat-icon color="primary">edit</mat-icon>
                   </button>
                 </mat-cell>
               </ng-container>

@@ -25,6 +25,7 @@ export class UpdateProductComponent implements OnInit, AfterViewInit {
   hideAddAnotherOptions = false;
   options: [];
   dataSource: MatTableDataSource<any>;
+  edit = false;
 
   constructor(
     private fg: FormBuilder,
@@ -92,6 +93,15 @@ export class UpdateProductComponent implements OnInit, AfterViewInit {
   deleteOption(i) {
     this.dataSource.data.splice(i, 1);
     this.dataSource._updateChangeSubscription();
+  }
+
+  updateOption(i) {
+    this.edit = true;
+    this.dataSource._updateChangeSubscription();
+  }
+
+  submitOption() {
+    this.edit = false;
   }
 
   close() {
