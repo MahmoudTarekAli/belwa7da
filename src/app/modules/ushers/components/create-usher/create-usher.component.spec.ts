@@ -1,21 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-// @ts-ignore
-import { TransferComponent } from './transfer.components';
+import { CreateUsherComponent } from './create-usher.component';
 
-describe('TrackingComponent', () => {
-  let component: TransferComponent;
-  let fixture: ComponentFixture<TransferComponent>;
+describe('CreateUsherComponent', () => {
+  let component: CreateUsherComponent;
+  let fixture: ComponentFixture<CreateUsherComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ TransferComponent ]
+      declarations: [ CreateUsherComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(TransferComponent);
+    fixture = TestBed.createComponent(CreateUsherComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

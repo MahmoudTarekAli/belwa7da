@@ -1,0 +1,156 @@
+<div class="panel-header panel-header-sm"></div>
+
+<div class="main-content">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div
+          class="card-header"
+          style="display: flex; justify-content: space-between"
+        >
+          <div class="card-title-container">
+            <div>
+              <h4 class="card-title">{{ 'Order Details' | translate }}</h4>
+            </div>
+          </div>
+          <div>
+            <a
+              style="cursor: pointer"
+              class="previous round"
+              (click)="backClicked()"
+              >&laquo;
+            </a>
+          </div>
+        </div>
+        <div class="card-body">
+          <ng-template [ngIf]="order">
+            <article class="row">
+              <section class="col-md-12">
+                <article class="basic__info">
+                  <header>
+                    <h4 class="basic__info__title">Order Info</h4>
+                  </header>
+                  <article class="basic__info__itemsContainer">
+                    <section>
+                      <h6 class="basic__info__subtitle">Order Number</h6>
+                      <p>{{ order?.number }}</p>
+                    </section>
+
+                    <section>
+                      <h6 class="basic__info__subtitle">Status</h6>
+                      <p>{{ order?.status[0]?.text }}</p>
+                    </section>
+
+                    <section>
+                      <h6 class="basic__info__subtitle">user</h6>
+                      <p>{{ order?.user?.name }}</p>
+                    </section>
+                    <section>
+                      <h6 class="basic__info__subtitle">created_at</h6>
+                      <p>{{ order?.created_at | date: 'M/dd/yyyy' }}</p>
+                    </section>
+                    <section>
+                      <h6 class="basic__info__subtitle">Price</h6>
+                      <p>{{ order?.priceInfo?.total }}</p>
+                    </section>
+                    <section>
+                      <h6 class="basic__info__subtitle">Price</h6>
+                      <p>{{ order?.priceInfo?.total }}</p>
+                    </section>
+                  </article>
+                </article>
+              </section>
+              <section class="col-md-12">
+                <article class="basic__info">
+                  <header>
+                    <h4 class="basic__info__title">Order Address</h4>
+                  </header>
+                  <article class="basic__info__itemsContainer">
+                    <section>
+                      <h6 class="basic__info__subtitle">Address Name</h6>
+                      <p>{{ order?.address.name }}</p>
+                    </section>
+
+                    <section>
+                      <h6 class="basic__info__subtitle">Region</h6>
+                      <p>{{ order?.address?.region?.name }}</p>
+                    </section>
+
+                    <section>
+                      <h6 class="basic__info__subtitle">Area</h6>
+                      <p>{{ order?.address?.area?.name }}</p>
+                    </section>
+                    <section>
+                      <h6 class="basic__info__subtitle">Description</h6>
+                      <p>{{ order?.address?.description }}</p>
+                    </section>
+                    <section>
+                      <h6 class="basic__info__subtitle">Apartment</h6>
+                      <p>{{ order?.address?.apartment }}</p>
+                    </section>
+                  </article>
+                </article>
+              </section>
+              <!--Start Product section-->
+
+              <div class="col-md-12">
+                <header>
+                  <h4 class="basic__info__title">Order Products</h4>
+                </header>
+                <mat-accordion
+                  class="example-headers-align"
+                  multi
+                  *ngFor="let product of order.products"
+                >
+                  <mat-expansion-panel class="mb-3 example-headers-align">
+                    <mat-expansion-panel-header>
+                      <mat-panel-title>
+                        {{ product?.selectedOption?.name }}
+                      </mat-panel-title>
+                      <mat-panel-description>
+                        <p>{{ product?.category?.name }}</p>
+                        <p>{{ product?.priceInfo?.total }} LE</p>
+                      </mat-panel-description>
+                    </mat-expansion-panel-header>
+                    <section class="col-md-12">
+                      <article class="basic__info">
+                        <header>
+                          <h4 class="basic__info__title">Product Info</h4>
+                        </header>
+                        <ng-container>
+                          <article class="basic__info__itemsContainer">
+                            <h6 style="font-size: 18px">product Category</h6>
+                            <p style="font-size: 16px">
+                              {{ product?.category?.name }}
+                            </p>
+                            <h6 style="font-size: 18px">prodcut Name</h6>
+                            <p style="font-size: 16px">
+                              {{ product?.selectedOption?.name }}
+                            </p>
+                            <h6 style="font-size: 18px">amount</h6>
+                            <p style="font-size: 16px">
+                              {{ product?.priceInfo?.amount }}
+                            </p>
+                            <h6 style="font-size: 18px">total</h6>
+                            <p style="font-size: 16px">
+                              Total Price : {{ product?.priceInfo?.total }}
+                            </p>
+                            <p style="font-size: 16px">
+                              Price Per Unit :
+                              {{ product?.priceInfo?.pricePerUnit }}
+                            </p>
+                          </article>
+                        </ng-container>
+                      </article>
+                    </section>
+                  </mat-expansion-panel>
+                </mat-accordion>
+              </div>
+              <!--End Product section-->
+            </article>
+          </ng-template>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

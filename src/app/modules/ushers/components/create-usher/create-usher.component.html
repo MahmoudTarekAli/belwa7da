@@ -1,0 +1,55 @@
+<div class="main-content">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card card-user">
+        <div class="card-body">
+          <form [formGroup]="usherForm">
+            <div>
+              <div>
+                <div class="row" @boxAnimation>
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <input
+                        class="form-control"
+                        placeholder="Name"
+                        formControlName="name"
+                      />
+                    </div>
+                  </div>
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <input
+                        type="email"
+                        class="form-control"
+                        placeholder="Email"
+                        formControlName="email"
+                      />
+                    </div>
+                  </div>
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <input
+                        class="form-control"
+                        placeholder="Mobile"
+                        formControlName="mobile"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <hr class="divider" />
+              </div>
+            </div>
+          </form>
+          <div class="col-md-3">
+            <app-open-dialog-button
+              [loading]="loading"
+              (isClicked)="submit()"
+              name="{{ 'Submit' | translate }}"
+            ></app-open-dialog-button>
+          </div>
+          <!--End Another Options-->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

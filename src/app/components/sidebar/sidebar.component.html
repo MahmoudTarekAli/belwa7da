@@ -1,19 +1,18 @@
 <div class="logo" style="">
   <a [routerLink]="['/']" class="simple-text logo-mini">
     <div class="logo-img">
-      <img src="../../../assets/img/user.jpg"/>
+      <img src="../../../assets/img/user.jpg" />
     </div>
   </a>
 </div>
 <div class="sidebar-wrapper">
   <ul class="nav">
-
     <ng-container>
       <li routerLinkActive="active" class="nav-item">
         <a [routerLink]="['/category']">
           <i class="fas fa-building"></i>
 
-          <p>{{ "categories" | translate }}</p>
+          <p>{{ 'categories' | translate }}</p>
         </a>
       </li>
     </ng-container>
@@ -22,7 +21,7 @@
         <a [routerLink]="['/areas']">
           <i class="fas fa-building"></i>
 
-          <p>{{ "areas" | translate }}</p>
+          <p>{{ 'areas' | translate }}</p>
         </a>
       </li>
     </ng-container>
@@ -30,7 +29,7 @@
       <li routerLinkActive="active" class="nav-item">
         <a [routerLink]="['/products']">
           <i class="fas fa-building"></i>
-          <p>{{ "Products" }}</p>
+          <p>{{ 'Products' }}</p>
         </a>
       </li>
     </ng-container>
@@ -39,7 +38,7 @@
         <a [routerLink]="['/orders']">
           <i class="fas fa-building"></i>
 
-          <p>{{ "orders" }}</p>
+          <p>{{ 'orders' }}</p>
         </a>
       </li>
     </ng-container>
@@ -48,10 +47,17 @@
         <a [routerLink]="['/users']">
           <i class="fas fa-building"></i>
 
-          <p>{{ "users" }}</p>
+          <p>{{ 'users' }}</p>
         </a>
       </li>
     </ng-container>
-
+    <ng-container>
+      <li routerLinkActive="active" class="nav-item">
+        <a [routerLink]="['/ushers']">
+          <i class="fas fa-building"></i>
+          <p>{{ 'ushers' }}</p>
+        </a>
+      </li>
+    </ng-container>
   </ul>
 </div>

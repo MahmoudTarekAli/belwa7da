@@ -47,6 +47,12 @@ export const routes: Routes = [
 
       },
       {
+        path: 'ushers',
+        loadChildren: './modules/ushers/ushers.module#UshersModule',
+        canActivate: [CanActivateAdminGuard],
+
+      },
+      {
         path: '',
         redirectTo: 'category',
         pathMatch: 'full'
