@@ -10,7 +10,7 @@ import { Location } from '@angular/common';
   templateUrl: './usher-details.component.html',
   styleUrls: ['./usher-details.component.scss', '../../tabel.scss'],
 })
-export class OrderDetailsComponent implements OnInit {
+export class UsherDetailsComponent implements OnInit {
   order: any;
   private previousUrl: string;
   private currentUrl: string;

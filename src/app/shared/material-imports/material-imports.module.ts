@@ -1,4 +1,4 @@
-import { NgModule } from "@angular/core";
+import {NgModule} from '@angular/core';
 import {
   MatButtonModule,
   MatIconModule,
@@ -25,8 +25,8 @@ import {
   MatTooltipModule,
   MatTabsModule,
   MatProgressBarModule,
-} from "@angular/material";
-import { DragDropModule } from '@angular/cdk/drag-drop';
+} from '@angular/material';
+import {DragDropModule} from '@angular/cdk/drag-drop';
 
 @NgModule({
   imports: [
@@ -88,4 +88,5 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
     DragDropModule
   ]
 })
-export class MaterialImportsModule {}
+export class MaterialImportsModule {
+}
