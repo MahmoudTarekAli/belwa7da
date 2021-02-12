@@ -14,7 +14,7 @@ export class UsherDetailsComponent implements OnInit {
   usher: any;
   private previousUrl: string;
   private currentUrl: string;
-  displayedColumns = ['name', 'email', 'mobile', 'actions'];
+  displayedColumns = ['name', 'email', 'mobile'];
 
   constructor(
     private activeRoute: ActivatedRoute,
@@ -37,7 +37,6 @@ export class UsherDetailsComponent implements OnInit {
       .subscribe((data) => {
         // @ts-ignore
         this.usher = data.body;
-        console.log(this.usher);
       });
   }
 

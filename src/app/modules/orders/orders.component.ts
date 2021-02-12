@@ -1,16 +1,29 @@
-import {AfterViewInit, ChangeDetectorRef, Component, ElementRef, OnInit, TemplateRef, ViewChild} from '@angular/core';
-import {MatDialog, MatPaginator} from '@angular/material';
-import {fromEvent, Subject} from 'rxjs';
-import {NotificationService} from '../../shared/services/notifications/notification.service';
-import {OrdersDataSource} from './classes/orders.data.source';
-import {OrdersService} from './service/orders.service';
-import {debounceTime, distinctUntilChanged, takeUntil, tap} from 'rxjs/operators';
-import {UpdateOrderComponent} from './components/update-order/update-order.component';
+import {
+  AfterViewInit,
+  ChangeDetectorRef,
+  Component,
+  ElementRef,
+  OnInit,
+  TemplateRef,
+  ViewChild,
+} from '@angular/core';
+import { MatDialog, MatPaginator } from '@angular/material';
+import { fromEvent, Subject } from 'rxjs';
+import { NotificationService } from '../../shared/services/notifications/notification.service';
+import { OrdersDataSource } from './classes/orders.data.source';
+import { OrdersService } from './service/orders.service';
+import {
+  debounceTime,
+  distinctUntilChanged,
+  takeUntil,
+  tap,
+} from 'rxjs/operators';
+import { UpdateOrderComponent } from './components/update-order/update-order.component';
 
 @Component({
   selector: 'app-orders',
   templateUrl: './orders.component.html',
-  styleUrls: ['./orders.component.scss', '../tabel.scss']
+  styleUrls: ['./orders.component.scss', '../tabel.scss'],
 })
 export class OrdersComponent implements OnInit, AfterViewInit {
   dataSource = new OrdersDataSource(this.ordersService);
@@ -18,18 +31,19 @@ export class OrdersComponent implements OnInit, AfterViewInit {
   $destroy = new Subject<any>();
   public loadingTemplate: TemplateRef<any>;
   // @ts-ignore
-  @ViewChild('customLoadingTemplate', {static: false}) customLoadingTemplate: TemplateRef<any>;
+  @ViewChild('customLoadingTemplate', { static: false })
+  customLoadingTemplate: TemplateRef<any>;
   @ViewChild('searchInput') search: ElementRef;
   orders: number;
 
-  displayedColumns: string [] = [
+  displayedColumns: string[] = [
     'number',
     'user',
     'product_name',
     'price',
     'created_at',
     'Status',
-    'Actions'
+    'Actions',
   ];
 
   constructor(
@@ -37,8 +51,7 @@ export class OrdersComponent implements OnInit, AfterViewInit {
     private ordersService: OrdersService,
     private notification: NotificationService,
     private changeDetectorRefs: ChangeDetectorRef
-  ) {
-  }
+  ) {}
 
   ngOnInit() {
     this.RefreshServiceData();
@@ -47,9 +60,9 @@ export class OrdersComponent implements OnInit, AfterViewInit {
   RefreshServiceData() {
     this.dataSource = new OrdersDataSource(this.ordersService);
     this.dataSource.loadOrders(0, this.search.nativeElement.value);
-    this.dataSource.mata$.pipe(
-      takeUntil(this.$destroy)
-    ).subscribe(totalNumber => this.orders = totalNumber);
+    this.dataSource.mata$
+      .pipe(takeUntil(this.$destroy))
+      .subscribe((totalNumber) => (this.orders = totalNumber));
   }
 
   ngAfterViewInit() {
@@ -73,14 +86,28 @@ export class OrdersComponent implements OnInit, AfterViewInit {
     );
   }
 
-  updateOrder(element) {
+  deleteOrder(element: any) {
+    this.ordersService.deleteOrder(element._id).subscribe(
+      (res: any) => {
+        this.notification.successNotification(
+          `order ${element.number} deleted successfully`
+        );
+        this.RefreshServiceData();
+      },
+      (err: any) => {
+        this.notification.errorNotification(err.error.message);
+      }
+    );
+  }
+
+  updateOrder(element: any) {
     const dialogRef = this.dialogRef.open(UpdateOrderComponent, {
       width: '60%',
       data: element,
       autoFocus: true,
       position: {
-        left: '30%'
-      }
+        left: '30%',
+      },
     });
     dialogRef
       .afterClosed()
@@ -136,5 +163,4 @@ export class OrdersComponent implements OnInit, AfterViewInit {
 
     return color;
   }
-
 }

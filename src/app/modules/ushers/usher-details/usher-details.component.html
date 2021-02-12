@@ -61,7 +61,11 @@
                   <header>
                     <h4 class="basic__info__title">Usher users</h4>
                   </header>
-                  <mat-table [dataSource]="usher?.users" role="grid">
+                  <mat-table
+                    *ngIf="usher?.users?.length"
+                    [dataSource]="usher?.users"
+                    role="grid"
+                  >
                     <ng-container matColumnDef="name">
                       <mat-header-cell *matHeaderCellDef>
                         {{ 'Name' | translate }}
@@ -99,17 +103,6 @@
                       </mat-cell>
                     </ng-container>
 
-                    <ng-container matColumnDef="actions">
-                      <mat-header-cell *matHeaderCellDef>
-                        {{ 'Actions' | translate }}
-                      </mat-header-cell>
-                      <mat-cell *matCellDef="let element">
-                        <a mat-icon-button (click)="deleteUser(element.id)">
-                          <mat-icon color="primary">delete</mat-icon>
-                        </a>
-                      </mat-cell>
-                    </ng-container>
-
                     <mat-header-row
                       *matHeaderRowDef="displayedColumns"
                     ></mat-header-row>
@@ -121,6 +114,14 @@
                       "
                     ></mat-row>
                   </mat-table>
+
+                  <div class="no__record">
+                    <div *ngIf="!usher?.users?.length">
+                      <h5>
+                        {{ 'No Users Found' | translate }}
+                      </h5>
+                    </div>
+                  </div>
                   <!-- <article class="basic__info__itemsContainer">
                     <section>
                       <h6 class="basic__info__subtitle">Address Name</h6>
