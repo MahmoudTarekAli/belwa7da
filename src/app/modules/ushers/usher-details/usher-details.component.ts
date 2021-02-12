@@ -11,16 +11,16 @@ import { Location } from '@angular/common';
   styleUrls: ['./usher-details.component.scss', '../../tabel.scss'],
 })
 export class UsherDetailsComponent implements OnInit {
-  order: any;
+  usher: any;
   private previousUrl: string;
   private currentUrl: string;
+  displayedColumns = ['name', 'email', 'mobile', 'actions'];
 
   constructor(
     private activeRoute: ActivatedRoute,
     private httpUshersService: HttpUshersService,
     private router: Router,
-    private notificationService: NotificationService,
-    private locations: Location
+    private notificationService: NotificationService
   ) {
     this.currentUrl = this.router.url;
     router.events.subscribe((event) => {
@@ -33,23 +33,21 @@ export class UsherDetailsComponent implements OnInit {
 
   ngOnInit() {
     this.activeRoute.paramMap
-      .pipe(switchMap((x) => this.singleOrder(x.get('id'))))
+      .pipe(switchMap((x) => this.singleUsher(x.get('id'))))
       .subscribe((data) => {
         // @ts-ignore
-        this.order = data.body;
-        console.log(this.order);
+        this.usher = data.body;
+        console.log(this.usher);
       });
   }
 
-  singleOrder(orderId) {
-    return this.httpUshersService.getAllUshers(orderId);
+  singleUsher(usherId: string) {
+    return this.httpUshersService.getSingleUsher(usherId);
   }
 
   backClicked() {
-    this.router.navigate(['/orders']);
+    this.router.navigate(['/ushers']);
   }
 
-  navigate(id) {
-    this.router.navigate(['locations/location-details', id]);
-  }
+  deleteUser(userId: string) {}
 }

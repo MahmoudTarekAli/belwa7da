@@ -10,7 +10,7 @@
         >
           <div class="card-title-container">
             <div>
-              <h4 class="card-title">{{ 'Order Details' | translate }}</h4>
+              <h4 class="card-title">{{ 'Usher Details' | translate }}</h4>
             </div>
           </div>
           <div>
@@ -23,39 +23,35 @@
           </div>
         </div>
         <div class="card-body">
-          <ng-template [ngIf]="order">
+          <ng-template [ngIf]="usher">
             <article class="row">
               <section class="col-md-12">
                 <article class="basic__info">
                   <header>
-                    <h4 class="basic__info__title">Order Info</h4>
+                    <h4 class="basic__info__title">Usher Info</h4>
                   </header>
                   <article class="basic__info__itemsContainer">
                     <section>
-                      <h6 class="basic__info__subtitle">Order Number</h6>
-                      <p>{{ order?.number }}</p>
+                      <h6 class="basic__info__subtitle">Name</h6>
+                      <p>{{ usher?.name }}</p>
                     </section>
 
                     <section>
-                      <h6 class="basic__info__subtitle">Status</h6>
-                      <p>{{ order?.status[0]?.text }}</p>
+                      <h6 class="basic__info__subtitle">Code</h6>
+                      <p>{{ usher?.code }}</p>
                     </section>
 
                     <section>
-                      <h6 class="basic__info__subtitle">user</h6>
-                      <p>{{ order?.user?.name }}</p>
+                      <h6 class="basic__info__subtitle">Email</h6>
+                      <p>{{ usher?.email }}</p>
                     </section>
                     <section>
-                      <h6 class="basic__info__subtitle">created_at</h6>
-                      <p>{{ order?.created_at | date: 'M/dd/yyyy' }}</p>
+                      <h6 class="basic__info__subtitle">Mobile</h6>
+                      <p>{{ usher?.mobile }}</p>
                     </section>
                     <section>
-                      <h6 class="basic__info__subtitle">Price</h6>
-                      <p>{{ order?.priceInfo?.total }}</p>
-                    </section>
-                    <section>
-                      <h6 class="basic__info__subtitle">Price</h6>
-                      <p>{{ order?.priceInfo?.total }}</p>
+                      <h6 class="basic__info__subtitle">Created at</h6>
+                      <p>{{ usher?.created_at | date: 'M/dd/yyyy' }}</p>
                     </section>
                   </article>
                 </article>
@@ -63,9 +59,69 @@
               <section class="col-md-12">
                 <article class="basic__info">
                   <header>
-                    <h4 class="basic__info__title">Order Address</h4>
+                    <h4 class="basic__info__title">Usher users</h4>
                   </header>
-                  <article class="basic__info__itemsContainer">
+                  <mat-table [dataSource]="usher?.users" role="grid">
+                    <ng-container matColumnDef="name">
+                      <mat-header-cell *matHeaderCellDef>
+                        {{ 'Name' | translate }}
+                      </mat-header-cell>
+                      <mat-cell
+                        *matCellDef="let element"
+                        [matTooltip]="element?.name"
+                        matTooltipPosition="above"
+                      >
+                        <span>{{ element?.name }}</span>
+                      </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="email">
+                      <mat-header-cell *matHeaderCellDef>
+                        {{ 'Email' | translate }}
+                      </mat-header-cell>
+                      <mat-cell *matCellDef="let element">
+                        <span>
+                          {{ element?.email }}
+                        </span>
+                      </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="mobile">
+                      <mat-header-cell *matHeaderCellDef>
+                        {{ 'Mobile' | translate }}
+                      </mat-header-cell>
+                      <mat-cell
+                        *matCellDef="let element"
+                        [matTooltip]="element?.mobile"
+                        matTooltipPosition="above"
+                      >
+                        <span>{{ element?.mobile }}</span>
+                      </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="actions">
+                      <mat-header-cell *matHeaderCellDef>
+                        {{ 'Actions' | translate }}
+                      </mat-header-cell>
+                      <mat-cell *matCellDef="let element">
+                        <a mat-icon-button (click)="deleteUser(element.id)">
+                          <mat-icon color="primary">delete</mat-icon>
+                        </a>
+                      </mat-cell>
+                    </ng-container>
+
+                    <mat-header-row
+                      *matHeaderRowDef="displayedColumns"
+                    ></mat-header-row>
+                    <mat-row
+                      *matRowDef="
+                        let row;
+                        columns: displayedColumns;
+                        let i = index
+                      "
+                    ></mat-row>
+                  </mat-table>
+                  <!-- <article class="basic__info__itemsContainer">
                     <section>
                       <h6 class="basic__info__subtitle">Address Name</h6>
                       <p>{{ order?.address.name }}</p>
@@ -88,12 +144,12 @@
                       <h6 class="basic__info__subtitle">Apartment</h6>
                       <p>{{ order?.address?.apartment }}</p>
                     </section>
-                  </article>
+                  </article> -->
                 </article>
               </section>
               <!--Start Product section-->
 
-              <div class="col-md-12">
+              <!-- <div class="col-md-12">
                 <header>
                   <h4 class="basic__info__title">Order Products</h4>
                 </header>
@@ -145,7 +201,7 @@
                     </section>
                   </mat-expansion-panel>
                 </mat-accordion>
-              </div>
+              </div> -->
               <!--End Product section-->
             </article>
           </ng-template>

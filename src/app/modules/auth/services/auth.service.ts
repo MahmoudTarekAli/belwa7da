@@ -1,11 +1,11 @@
-import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
-import {BehaviorSubject, Observable} from 'rxjs';
-import {environment} from '../../../../environments/environment';
-import {Router} from '@angular/router';
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { environment } from '../../../../environments/environment';
+import { Router } from '@angular/router';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
   private baseUrl: string = environment.base_url;
@@ -17,25 +17,18 @@ export class AuthService {
 
   public isUserOperationSource = new BehaviorSubject<boolean>(false);
   public isUserOperationState = this.isUserOperationSource.asObservable();
-  guestToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxIiwibmFtZSI6Ikd1ZXN0Iiwicm9sZXMiOlsiZ3Vlc3QiXX0.ats4O6FJ8McALpnrNPxZnnPFmnMkU9C30IPgKnxX5p4';
+  guestToken =
+    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxIiwibmFtZSI6Ikd1ZXN0Iiwicm9sZXMiOlsiZ3Vlc3QiXX0.ats4O6FJ8McALpnrNPxZnnPFmnMkU9C30IPgKnxX5p4';
 
-  constructor(
-    private http: HttpClient,
-    private router: Router,
-  ) {
-  }
+  constructor(private http: HttpClient, private router: Router) {}
 
   public saveToken(token: string): void {
     localStorage.setItem('user-token', token);
     this.tokenSubjectSource.next(token);
-    this.token = token;
   }
 
   public getToken(): string {
-    if (!this.token) {
-      this.token = localStorage.getItem('user-token');
-    }
-    return this.token;
+    return localStorage.getItem('user-token');
   }
 
   public getUserIdWhenLoginIn(): string {
@@ -62,7 +55,6 @@ export class AuthService {
     return localStorage.getItem('user-role');
   }
 
-
   public logOut() {
     localStorage.removeItem('mobile_token');
     localStorage.removeItem('userPhoneNumber');
@@ -71,12 +63,10 @@ export class AuthService {
     localStorage.removeItem('userData');
   }
 
-
   public logout(): void {
     this.token = '';
     localStorage.removeItem('clipperToken');
   }
-
 
   public login($userCredentials): Observable<any> {
     return this.http.post(`${this.baseUrl}auth/local/login`, $userCredentials, {
@@ -91,9 +81,13 @@ export class AuthService {
   }
 
   public Login($userCredentials): Observable<any> {
-    return this.http.post(`${this.baseUrl}/auth/local/login`, $userCredentials, {
-      observe: 'response',
-    });
+    return this.http.post(
+      `${this.baseUrl}/auth/local/login`,
+      $userCredentials,
+      {
+        observe: 'response',
+      }
+    );
   }
 
   public verifyCode($code): Observable<any> {

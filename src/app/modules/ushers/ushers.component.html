@@ -47,7 +47,7 @@
                   [matTooltip]="element?.name"
                   matTooltipPosition="above"
                 >
-                  <span >{{ element?.name }}</span>
+                  <span>{{ element?.name }}</span>
                 </mat-cell>
               </ng-container>
 
@@ -96,6 +96,9 @@
                   <a mat-icon-button [routerLink]="[element._id]">
                     <mat-icon color="primary">turned_in</mat-icon>
                   </a>
+                  <a mat-icon-button (click)="deleteUsher(element)">
+                    <mat-icon style="color: red">delete</mat-icon>
+                  </a>
                 </mat-cell>
               </ng-container>
 
@@ -111,7 +114,8 @@
               showFirstLastButtons
               [length]="totalPromotions"
               [pageSize]="10"
-            > </mat-paginator>
+            >
+            </mat-paginator>
           </div>
           <div class="no__record">
             <ng-container *ngIf="dataSource.loading$ | async">

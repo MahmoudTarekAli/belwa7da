@@ -33,13 +33,7 @@ import { CreateUsherComponent } from './components/create-usher/create-usher.com
   styleUrls: ['./ushers.component.scss', '../tabel.scss'],
 })
 export class UshersComponent implements OnInit, AfterViewInit, OnDestroy {
-  displayedColumns: string[] = [
-    'name',
-    'code',
-    'email',
-    'mobile',
-    'Actions',
-  ];
+  displayedColumns: string[] = ['name', 'code', 'email', 'mobile', 'Actions'];
   dataSource = new UshersDataSource(this.httpUshersService);
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
@@ -108,21 +102,21 @@ export class UshersComponent implements OnInit, AfterViewInit, OnDestroy {
   //   });
   // }
 
-  // deleteProduct(element) {
-  //   this.httpProductsService.deleteProduct(element._id).subscribe(
-  //     (data) => {
-  //       if (data.status === 200) {
-  //         this.notificationService.successNotification(
-  //           `Product ${element.options[0].name} Deleted`
-  //         );
-  //         this.refreshServicesData();
-  //       }
-  //     },
-  //     (err) => {
-  //       this.notificationService.errorNotification(err.error.message);
-  //     }
-  //   );
-  // }
+  deleteUsher(element: any) {
+    this.httpUshersService.deleteUsher(element._id).subscribe(
+      (data) => {
+        if (data.status === 200) {
+          this.notificationService.successNotification(
+            `Usher ${element.name} Deleted`
+          );
+          this.refreshServicesData();
+        }
+      },
+      (err) => {
+        this.notificationService.errorNotification(err.error.message);
+      }
+    );
+  }
 
   goToCreateProduct() {
     const getCurrentLang = localStorage.getItem('LOCALIZE_DEFAULT_LANGUAGE');
