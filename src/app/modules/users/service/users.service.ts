@@ -1,28 +1,22 @@
-import {Injectable} from '@angular/core';
-import {environment} from '../../../../environments/environment';
-import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
-import {Observable} from 'rxjs';
+import { Injectable } from '@angular/core';
+import { environment } from '../../../../environments/environment';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class UsersService {
   private apiUrl = environment.base_url;
 
-  constructor(private http: HttpClient) {
-  }
+  constructor(private http: HttpClient) {}
 
-
-  getAllCategories(
-    page = 0,
-    search = '',
-  ): Observable<any> {
+  getAllCategories(page = 0, search = ''): Observable<any> {
     let headers = new HttpHeaders();
     let params = new HttpParams();
     params = params.append('page', page.toString());
     params = params.append('pagination', 'true');
     params = params.append('search', search.toString());
-
 
     // tslint:disable-next-line:max-line-length
     headers = new HttpHeaders({
@@ -32,7 +26,7 @@ export class UsersService {
     return this.http.get(`${this.apiUrl}/users`, {
       params: params,
       headers: headers,
-      observe: 'response'
+      observe: 'response',
     });
   }
 
@@ -42,19 +36,25 @@ export class UsersService {
     });
     return this.http.post<any>(`${this.apiUrl}/users`, body, {
       headers: headers,
-      observe: 'response'
+      observe: 'response',
     });
   }
 
   deleteCategory(catId) {
     return this.http.delete(`${this.apiUrl}/events/${catId}`, {
-      observe: 'response'
+      observe: 'response',
+    });
+  }
+
+  deleteUser(userId: string) {
+    return this.http.delete(`${this.apiUrl}/users/${userId}`, {
+      observe: 'response',
     });
   }
 
   updateCategory(body, categoryId) {
     return this.http.put(`${this.apiUrl}/events/${categoryId}`, body, {
-      observe: 'response'
+      observe: 'response',
     });
   }
 
@@ -67,7 +67,7 @@ export class UsersService {
     });
     return this.http.get(`${this.apiUrl}/countries`, {
       headers: headers,
-      observe: 'response'
+      observe: 'response',
     });
   }
   getAllCities(CountryName): Observable<any> {
@@ -79,13 +79,13 @@ export class UsersService {
     });
     return this.http.get(`${this.apiUrl}/countries/${CountryName}/cities`, {
       headers: headers,
-      observe: 'response'
+      observe: 'response',
     });
   }
 
   getUserOrders(id) {
     return this.http.get(`${this.apiUrl}/users/${id}/orders`, {
-      observe: 'response'
+      observe: 'response',
     });
   }
 }
