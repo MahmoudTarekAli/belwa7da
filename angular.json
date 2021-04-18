@@ -20,7 +20,9 @@
             "assets": [
               "src/assets",
               "src/favicon.ico",
-              "src/assets/locales"
+              "src/assets/locales",
+              "src/firebase-messaging-sw.js",
+              "src/manifest.json"
             ],
             "styles": [
               "node_modules/perfect-scrollbar/css/perfect-scrollbar.css",
@@ -29,9 +31,7 @@
               "src/assets/scss/now-ui-dashboard.scss",
               "src/assets/demo/demo.css"
             ],
-            "scripts": [
-              "node_modules/chart.js/dist/Chart.min.js"
-            ]
+            "scripts": ["node_modules/chart.js/dist/Chart.min.js"]
           },
           "configurations": {
             "production": {
@@ -44,10 +44,12 @@
               "extractLicenses": true,
               "vendorChunk": false,
               "buildOptimizer": true,
-              "fileReplacements": [{
-                "replace": "src/environments/environment.ts",
-                "with": "src/environments/environment.prod.ts"
-              }]
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
+                }
+              ]
             }
           }
         },
@@ -69,28 +71,20 @@
             "karmaConfig": "./karma.conf.js",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "src/tsconfig.spec.json",
-            "scripts": [
-              "node_modules/chart.js/dist/Chart.min.js"
-            ],
+            "scripts": ["node_modules/chart.js/dist/Chart.min.js"],
             "styles": [
               "node_modules/perfect-scrollbar/css/perfect-scrollbar.css",
               "node_modules/ngx-toastr/toastr.css",
               "src/assets/scss/now-ui-dashboard.scss",
               "src/assets/demo/demo.css"
             ],
-            "assets": [
-              "src/assets",
-              "src/favicon.ico"
-            ]
+            "assets": ["src/assets", "src/favicon.ico"]
           }
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": [
-              "src/tsconfig.app.json",
-              "src/tsconfig.spec.json"
-            ],
+            "tsConfig": ["src/tsconfig.app.json", "src/tsconfig.spec.json"],
             "exclude": []
           }
         }
@@ -111,9 +105,7 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": [
-              "e2e/tsconfig.e2e.json"
-            ],
+            "tsConfig": ["e2e/tsconfig.e2e.json"],
             "exclude": []
           }
         }
