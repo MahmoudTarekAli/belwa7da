@@ -7,7 +7,6 @@ import {
   HttpClient,
 } from '@angular/common/http';
 import { MaterialImportsModule } from './material-imports/material-imports.module';
-import { AgmCoreModule } from '@agm/core';
 import { ImgCacheModule } from 'ng-imgcache';
 
 // components
@@ -46,10 +45,6 @@ import { PushNotificationService } from './services/push-notification/push-notif
     FormsModule,
     MaterialImportsModule,
     HttpClientModule,
-    AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyAwsSpAS7gv7AA00Ce8ljPKII6lbme6EbU',
-      libraries: ['places', 'drawing', 'geometry'],
-    }),
     ComponentsModule,
     ImgCacheModule,
     ChartsModule,
@@ -78,7 +73,6 @@ import { PushNotificationService } from './services/push-notification/push-notif
     FormsModule,
     HttpClientModule,
     MaterialImportsModule,
-    AgmCoreModule,
     TranslateModule,
     LocalizedDatePipe,
     ImgCacheModule,
