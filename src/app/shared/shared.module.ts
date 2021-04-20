@@ -29,13 +29,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AddButtonComponent } from './components/add-button/add-button.component';
 import { CloseDialogButtonComponent } from './components/close-dialog-button/close-dialog-button.component';
 
-import { AngularFireMessagingModule } from '@angular/fire/messaging';
-import { AngularFireDatabaseModule } from '@angular/fire/database';
-import { AngularFireAuthModule } from '@angular/fire/auth';
-import { AngularFireModule } from '@angular/fire';
 import { environment } from '../../environments/environment';
 import { AsyncPipe } from '@angular/common';
-import { PushNotificationService } from './services/push-notification/push-notification.service';
 
 @NgModule({
   imports: [
@@ -52,10 +47,6 @@ import { PushNotificationService } from './services/push-notification/push-notif
     ToastrModule.forRoot(),
     TranslateModule,
     LocalizeRouterModule,
-    AngularFireDatabaseModule,
-    AngularFireAuthModule,
-    AngularFireMessagingModule,
-    AngularFireModule.initializeApp(environment.firebase),
   ],
   declarations: [
     TranslatePipe,
@@ -90,6 +81,6 @@ import { PushNotificationService } from './services/push-notification/push-notif
     AddButtonComponent,
     CloseDialogButtonComponent,
   ],
-  providers: [TranslatePipe, PushNotificationService, AsyncPipe],
+  providers: [TranslatePipe, AsyncPipe],
 })
 export class SharedModule {}
