@@ -42,14 +42,14 @@ export class ProductsComponent implements OnInit, AfterViewInit, OnDestroy {
     'Actions',
   ];
   dataSource = new ProductsDataSource(this.httpProductsService);
-  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
 
   $destroy = new Subject<any>();
   loading = false;
   noCities = false;
   totalPromotions: number;
   status = '';
-  @ViewChild('searchInput') search: ElementRef;
+  @ViewChild('searchInput', { static: false }) search: ElementRef;
 
   constructor(
     @Optional() public dialogRef: MatDialog,

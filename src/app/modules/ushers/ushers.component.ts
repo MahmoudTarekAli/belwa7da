@@ -35,14 +35,14 @@ import { CreateUsherComponent } from './components/create-usher/create-usher.com
 export class UshersComponent implements OnInit, AfterViewInit, OnDestroy {
   displayedColumns: string[] = ['name', 'code', 'email', 'mobile', 'Actions'];
   dataSource = new UshersDataSource(this.httpUshersService);
-  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
 
   $destroy = new Subject<any>();
   loading = false;
   noCities = false;
   totalPromotions: number;
   status = '';
-  @ViewChild('searchInput') search: ElementRef;
+  @ViewChild('searchInput', { static: false }) search: ElementRef;
 
   constructor(
     @Optional() public dialogRef: MatDialog,

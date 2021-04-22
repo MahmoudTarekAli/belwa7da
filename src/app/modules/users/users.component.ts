@@ -26,13 +26,13 @@ import {
 })
 export class UsersComponent implements OnInit, AfterViewInit {
   dataSource = new UsersDataSource(this.categoriesService);
-  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
   $destroy = new Subject<any>();
   public loadingTemplate: TemplateRef<any>;
   // @ts-ignore
   @ViewChild('customLoadingTemplate', { static: false })
   customLoadingTemplate: TemplateRef<any>;
-  @ViewChild('searchInput') search: ElementRef;
+  @ViewChild('searchInput', { static: false }) search: ElementRef;
   categories: number;
 
   constructor(

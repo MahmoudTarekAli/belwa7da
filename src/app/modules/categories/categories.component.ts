@@ -1,38 +1,50 @@
-import {AfterViewInit, ChangeDetectorRef, Component, ElementRef, OnInit, TemplateRef, ViewChild} from '@angular/core';
-import {MatDialog, MatPaginator} from '@angular/material';
-import {AddCategoryComponent} from './components/add-category/add-category.component';
-import {CategoriesDataSource} from './classes/categories.data.source';
-import {CategoriesService} from './service/categories.service';
-import {NotificationService} from '../../shared/services/notifications/notification.service';
-import {UpdateCategoryComponent} from './components/update-category/update-category.component';
-import {fromEvent, Subject} from 'rxjs';
-import {debounceTime, distinctUntilChanged, takeUntil, tap} from 'rxjs/operators';
+import {
+  AfterViewInit,
+  ChangeDetectorRef,
+  Component,
+  ElementRef,
+  OnInit,
+  TemplateRef,
+  ViewChild,
+} from '@angular/core';
+import { MatDialog, MatPaginator } from '@angular/material';
+import { AddCategoryComponent } from './components/add-category/add-category.component';
+import { CategoriesDataSource } from './classes/categories.data.source';
+import { CategoriesService } from './service/categories.service';
+import { NotificationService } from '../../shared/services/notifications/notification.service';
+import { UpdateCategoryComponent } from './components/update-category/update-category.component';
+import { fromEvent, Subject } from 'rxjs';
+import {
+  debounceTime,
+  distinctUntilChanged,
+  takeUntil,
+  tap,
+} from 'rxjs/operators';
 
 @Component({
   selector: 'app-categories',
   templateUrl: './categories.component.html',
-  styleUrls: ['./categories.component.scss', '../tabel.scss']
+  styleUrls: ['./categories.component.scss', '../tabel.scss'],
 })
 export class CategoriesComponent implements OnInit, AfterViewInit {
   dataSource = new CategoriesDataSource(this.categoriesService);
-  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
   $destroy = new Subject<any>();
   public loadingTemplate: TemplateRef<any>;
   // @ts-ignore
-  @ViewChild('customLoadingTemplate', {static: false}) customLoadingTemplate: TemplateRef<any>;
-  @ViewChild('searchInput') search: ElementRef;
+  @ViewChild('customLoadingTemplate', { static: false })
+  customLoadingTemplate: TemplateRef<any>;
+  @ViewChild('searchInput', { static: false }) search: ElementRef;
   categories: number;
 
-  constructor(public dialogRef: MatDialog, private categoriesService: CategoriesService,
-              private notification: NotificationService,
-              private changeDetectorRefs: ChangeDetectorRef) {
-  }
+  constructor(
+    public dialogRef: MatDialog,
+    private categoriesService: CategoriesService,
+    private notification: NotificationService,
+    private changeDetectorRefs: ChangeDetectorRef
+  ) {}
 
-  displayedColumns: string [] = [
-    'EnName',
-    'ArName',
-    'Actions'
-  ];
+  displayedColumns: string[] = ['EnName', 'ArName', 'Actions'];
 
   ngOnInit() {
     this.RefreshServiceData();
@@ -44,26 +56,26 @@ export class CategoriesComponent implements OnInit, AfterViewInit {
       disableClose: true,
       autoFocus: true,
       position: {
-        left: '30%'
-      }
+        left: '30%',
+      },
     });
-    dialogRef
-      .afterClosed()
-      .subscribe(next => {
-        this.loadPage();
-      });
+    dialogRef.afterClosed().subscribe((next) => {
+      this.loadPage();
+    });
   }
 
   deleteCategory(element) {
-    this.categoriesService.deleteCategory(element._id).subscribe(data => {
-      if (data.status === 200) {
-        this.notification.successNotification('Deleted');
-        this.loadPage();
+    this.categoriesService.deleteCategory(element._id).subscribe(
+      (data) => {
+        if (data.status === 200) {
+          this.notification.successNotification('Deleted');
+          this.loadPage();
+        }
+      },
+      (error) => {
+        this.notification.errorNotification(error.error.message);
       }
-    },
-      error => {
-          this.notification.errorNotification(error.error.message);
-      });
+    );
   }
 
   updateCategory(element) {
@@ -73,29 +85,26 @@ export class CategoriesComponent implements OnInit, AfterViewInit {
       disableClose: true,
       autoFocus: true,
       position: {
-        left: '30%'
-      }
+        left: '30%',
+      },
     });
-    dialogRef
-      .afterClosed()
-      .subscribe(() => {
-        this.loadPage();
-      });
+    dialogRef.afterClosed().subscribe(() => {
+      this.loadPage();
+    });
   }
 
   RefreshServiceData() {
     this.dataSource = new CategoriesDataSource(this.categoriesService);
     this.dataSource.loadCategories(0, this.search.nativeElement.value);
-    this.dataSource.mata$.pipe(
-      takeUntil(this.$destroy)
-    ).subscribe(totalNumber => this.categories = totalNumber);
+    this.dataSource.mata$
+      .pipe(takeUntil(this.$destroy))
+      .subscribe((totalNumber) => (this.categories = totalNumber));
     this.changeDetectorRefs.detectChanges();
     if (this.loadingTemplate) {
       this.loadingTemplate = null;
     } else {
       this.loadingTemplate = this.customLoadingTemplate;
     }
-
   }
 
   ngAfterViewInit() {
@@ -118,6 +127,4 @@ export class CategoriesComponent implements OnInit, AfterViewInit {
       this.search.nativeElement.value
     );
   }
-
-
 }

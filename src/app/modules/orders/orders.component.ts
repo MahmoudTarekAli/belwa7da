@@ -27,13 +27,13 @@ import { UpdateOrderComponent } from './components/update-order/update-order.com
 })
 export class OrdersComponent implements OnInit, AfterViewInit {
   dataSource = new OrdersDataSource(this.ordersService);
-  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
   $destroy = new Subject<any>();
   public loadingTemplate: TemplateRef<any>;
   // @ts-ignore
   @ViewChild('customLoadingTemplate', { static: false })
   customLoadingTemplate: TemplateRef<any>;
-  @ViewChild('searchInput') search: ElementRef;
+  @ViewChild('searchInput', { static: false }) search: ElementRef;
   orders: number;
 
   displayedColumns: string[] = [

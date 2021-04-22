@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { from } from 'rxjs';
 import { NotificationService } from './shared/services/notifications/notification.service';
-import { PushNotificationService } from './shared/services/push-notification/push-notification.service';
+import { AngularFireMessaging } from '@angular/fire/messaging';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -9,16 +10,25 @@ import { PushNotificationService } from './shared/services/push-notification/pus
 export class AppComponent implements OnInit {
   message: any;
   constructor(
-    private pushNotificationService: PushNotificationService,
-    private notificationService: NotificationService
+    private notificationService: NotificationService,
+    private afMessaging: AngularFireMessaging
   ) {}
 
   ngOnInit() {
-    this.pushNotificationService.requestPermission();
-    this.pushNotificationService.receiveMessage();
+    this.requestPermission();
+    this.listen();
+  }
 
-    // this.notificationService.warningNotification(
-    //   this.pushNotificationService.currentMessage
-    // );
+  requestPermission() {
+    this.afMessaging.requestToken.subscribe((token) => {
+      console.log('permission granted', token);
+    });
+  }
+
+  listen() {
+    this.afMessaging.messages.subscribe((message: any) => {
+      console.log(message);
+      this.notificationService.successNotification(message.notification.body);
+    });
   }
 }

@@ -1,40 +1,52 @@
-import {AfterViewInit, ChangeDetectorRef, Component, ElementRef, OnInit, TemplateRef, ViewChild} from '@angular/core';
-import {MatDialog, MatPaginator} from '@angular/material';
-import {AreaDataSource} from './classes/area.data.source';
-import {AreaService} from './service/area.service';
-import {NotificationService} from '../../shared/services/notifications/notification.service';
-import {fromEvent, Subject} from 'rxjs';
-import {debounceTime, distinctUntilChanged, takeUntil, tap} from 'rxjs/operators';
-import {AddAreaComponent} from './components/add-area/add-area.component';
-import {UpdateAreaComponent} from './components/update-area/update-area.component';
-import {AddRegionComponent} from '../region/components/add-region/add-region.component';
-import {AllRegionComponent} from '../region/components/all-region/all-region.component';
+import {
+  AfterViewInit,
+  ChangeDetectorRef,
+  Component,
+  ElementRef,
+  OnInit,
+  TemplateRef,
+  ViewChild,
+} from '@angular/core';
+import { MatDialog, MatPaginator } from '@angular/material';
+import { AreaDataSource } from './classes/area.data.source';
+import { AreaService } from './service/area.service';
+import { NotificationService } from '../../shared/services/notifications/notification.service';
+import { fromEvent, Subject } from 'rxjs';
+import {
+  debounceTime,
+  distinctUntilChanged,
+  takeUntil,
+  tap,
+} from 'rxjs/operators';
+import { AddAreaComponent } from './components/add-area/add-area.component';
+import { UpdateAreaComponent } from './components/update-area/update-area.component';
+import { AddRegionComponent } from '../region/components/add-region/add-region.component';
+import { AllRegionComponent } from '../region/components/all-region/all-region.component';
 
 @Component({
   selector: 'app-categories',
   templateUrl: './area.component.html',
-  styleUrls: ['./area.component.scss', '../tabel.scss']
+  styleUrls: ['./area.component.scss', '../tabel.scss'],
 })
 export class AreaComponent implements OnInit, AfterViewInit {
   dataSource = new AreaDataSource(this.categoriesService);
-  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
   $destroy = new Subject<any>();
   public loadingTemplate: TemplateRef<any>;
   // @ts-ignore
-  @ViewChild('customLoadingTemplate', {static: false}) customLoadingTemplate: TemplateRef<any>;
-  @ViewChild('searchInput') search: ElementRef;
+  @ViewChild('customLoadingTemplate', { static: false })
+  customLoadingTemplate: TemplateRef<any>;
+  @ViewChild('searchInput', { static: false }) search: ElementRef;
   categories: number;
 
-  constructor(public dialogRef: MatDialog, private categoriesService: AreaService,
-              private notification: NotificationService,
-              private changeDetectorRefs: ChangeDetectorRef) {
-  }
+  constructor(
+    public dialogRef: MatDialog,
+    private categoriesService: AreaService,
+    private notification: NotificationService,
+    private changeDetectorRefs: ChangeDetectorRef
+  ) {}
 
-  displayedColumns: string [] = [
-    'EnName',
-    'ArName',
-    'Actions'
-  ];
+  displayedColumns: string[] = ['EnName', 'ArName', 'Actions'];
 
   ngOnInit() {
     this.RefreshServiceData();
@@ -46,14 +58,12 @@ export class AreaComponent implements OnInit, AfterViewInit {
       disableClose: true,
       autoFocus: true,
       position: {
-        left: '30%'
-      }
+        left: '30%',
+      },
     });
-    dialogRef
-      .afterClosed()
-      .subscribe(next => {
-        this.loadPage();
-      });
+    dialogRef.afterClosed().subscribe((next) => {
+      this.loadPage();
+    });
   }
   addNewRegion(element) {
     const dialogRef = this.dialogRef.open(AddRegionComponent, {
@@ -62,14 +72,12 @@ export class AreaComponent implements OnInit, AfterViewInit {
       disableClose: true,
       autoFocus: true,
       position: {
-        left: '30%'
-      }
+        left: '30%',
+      },
     });
-    dialogRef
-      .afterClosed()
-      .subscribe(next => {
-        this.loadPage();
-      });
+    dialogRef.afterClosed().subscribe((next) => {
+      this.loadPage();
+    });
   }
   showRegions(element) {
     const dialogRef = this.dialogRef.open(AllRegionComponent, {
@@ -78,26 +86,26 @@ export class AreaComponent implements OnInit, AfterViewInit {
       disableClose: true,
       autoFocus: true,
       position: {
-        left: '30%'
-      }
+        left: '30%',
+      },
     });
-    dialogRef
-      .afterClosed()
-      .subscribe(next => {
-        this.loadPage();
-      });
+    dialogRef.afterClosed().subscribe((next) => {
+      this.loadPage();
+    });
   }
 
   deleteCategory(element) {
-    this.categoriesService.deleteArea(element._id).subscribe(data => {
-      if (data.status === 200) {
-        this.notification.successNotification('Deleted');
-        this.loadPage();
+    this.categoriesService.deleteArea(element._id).subscribe(
+      (data) => {
+        if (data.status === 200) {
+          this.notification.successNotification('Deleted');
+          this.loadPage();
+        }
+      },
+      (error) => {
+        this.notification.errorNotification(error.error.message);
       }
-    },
-      error => {
-          this.notification.errorNotification(error.error.message);
-      });
+    );
   }
 
   updateCategory(element) {
@@ -107,29 +115,26 @@ export class AreaComponent implements OnInit, AfterViewInit {
       disableClose: true,
       autoFocus: true,
       position: {
-        left: '30%'
-      }
+        left: '30%',
+      },
     });
-    dialogRef
-      .afterClosed()
-      .subscribe(() => {
-        this.loadPage();
-      });
+    dialogRef.afterClosed().subscribe(() => {
+      this.loadPage();
+    });
   }
 
   RefreshServiceData() {
     this.dataSource = new AreaDataSource(this.categoriesService);
     this.dataSource.loadCategories(0, this.search.nativeElement.value);
-    this.dataSource.mata$.pipe(
-      takeUntil(this.$destroy)
-    ).subscribe(totalNumber => this.categories = totalNumber);
+    this.dataSource.mata$
+      .pipe(takeUntil(this.$destroy))
+      .subscribe((totalNumber) => (this.categories = totalNumber));
     this.changeDetectorRefs.detectChanges();
     if (this.loadingTemplate) {
       this.loadingTemplate = null;
     } else {
       this.loadingTemplate = this.customLoadingTemplate;
     }
-
   }
 
   ngAfterViewInit() {
@@ -152,6 +157,4 @@ export class AreaComponent implements OnInit, AfterViewInit {
       this.search.nativeElement.value
     );
   }
-
-
 }
