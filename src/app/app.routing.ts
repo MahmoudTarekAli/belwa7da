@@ -14,41 +14,41 @@ export const routes: Routes = [
     children: [
       {
         path: 'users',
-        loadChildren: './modules/users/users.module#UsersModule',
+        loadChildren: () => import('./modules/users/users.module').then(m => m.UsersModule),
         canActivate: [CanActivateAdminGuard],
       },
       {
         path: 'category',
-        loadChildren: './modules/categories/categories.module#CategoriesModule',
+        loadChildren: () => import('./modules/categories/categories.module').then(m => m.CategoriesModule),
         canActivate: [CanActivateAdminGuard],
 
       },
       {
         path: 'areas',
-        loadChildren: './modules/area/area.module#AreaModule',
+        loadChildren: () => import('./modules/area/area.module').then(m => m.AreaModule),
         canActivate: [CanActivateAdminGuard],
       },
       {
         path: 'regions',
-        loadChildren: './modules/region/region.module#RegionModule',
+        loadChildren: () => import('./modules/region/region.module').then(m => m.RegionModule),
         canActivate: [CanActivateAdminGuard],
       },
       {
         path: 'products',
         loadChildren:
-          './modules/products/products.module#ProductsModule',
+          () => import('./modules/products/products.module').then(m => m.ProductsModule),
         canActivate: [CanActivateAdminGuard],
 
       },
       {
         path: 'orders',
-        loadChildren: './modules/orders/orders.module#OrdersModule',
+        loadChildren: () => import('./modules/orders/orders.module').then(m => m.OrdersModule),
         canActivate: [CanActivateAdminGuard],
 
       },
       {
         path: 'ushers',
-        loadChildren: './modules/ushers/ushers.module#UshersModule',
+        loadChildren: () => import('./modules/ushers/ushers.module').then(m => m.UshersModule),
         canActivate: [CanActivateAdminGuard],
 
       },
@@ -62,7 +62,7 @@ export const routes: Routes = [
   },
   {
     path: 'auth',
-    loadChildren: './modules/auth/auth.module#AuthModule'
+    loadChildren: () => import('./modules/auth/auth.module').then(m => m.AuthModule)
   }
 ];
 
