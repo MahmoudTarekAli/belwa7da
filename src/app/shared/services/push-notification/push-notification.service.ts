@@ -11,17 +11,7 @@ export class PushNotificationService {
     private afMessaging: AngularFireMessaging,
     private notificationService: NotificationService,
     private userService: UsersService
-  ) {
-    console.log('here');
-
-    this.afMessaging.messaging.subscribe((_messaging) => {
-      _messaging.onMessage = _messaging.onMessage.bind(_messaging);
-      _messaging.onTokenRefresh = _messaging.onTokenRefresh.bind(_messaging);
-      _messaging.onBackgroundMessage = _messaging.onBackgroundMessage.bind(
-        _messaging
-      );
-    });
-  }
+  ) {}
 
   requestPermission() {
     this.afMessaging.requestToken.subscribe((token) => {

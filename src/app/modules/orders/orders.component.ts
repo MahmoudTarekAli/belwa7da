@@ -60,6 +60,8 @@ export class OrdersComponent implements OnInit, AfterViewInit {
   ngOnInit() {
     this.RefreshServiceData();
     this.pushNotificationService.listen().subscribe((message: any) => {
+      console.log(message);
+
       this.notification.UploadNotification(message.notification.body);
       this.RefreshServiceData();
     });
