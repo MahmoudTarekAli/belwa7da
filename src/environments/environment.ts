@@ -6,13 +6,14 @@
 export const environment = {
   production: false,
   firebase: {
-    apiKey: 'AIzaSyBa0RQ_ZIYU2hwKvI5YM6UFOuahP8pEcTY',
-    authDomain: 'fir-db572.firebaseapp.com',
-    projectId: 'fir-db572',
-    storageBucket: 'fir-db572.appspot.com',
-    messagingSenderId: '886162324851',
-    appId: '1:886162324851:web:44f58e6fbbde5ff0d91906',
-    measurementId: 'G-ZBWPNQCWSS',
+    apiKey: 'AIzaSyAul-rgjkwHK3OsGuvq0rCjbzRWEiL-z7g',
+    authDomain: 'blwahda-6a522.firebaseapp.com',
+    databaseURL: 'https://blwahda-6a522.firebaseio.com',
+    projectId: 'blwahda-6a522',
+    storageBucket: 'blwahda-6a522.appspot.com',
+    messagingSenderId: '503666408165',
+    appId: '1:503666408165:web:3f5038634210278cc0b20c',
+    measurementId: 'G-8RJ5SLXNGG',
   },
   base_url: 'http://localhost:8081',
 };
