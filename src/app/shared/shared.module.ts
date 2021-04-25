@@ -28,6 +28,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AddButtonComponent } from './components/add-button/add-button.component';
 import { CloseDialogButtonComponent } from './components/close-dialog-button/close-dialog-button.component';
+import { AngularFireMessagingModule } from '@angular/fire/messaging';
+import { AngularFireModule } from '@angular/fire';
 
 import { environment } from '../../environments/environment';
 import { AsyncPipe } from '@angular/common';
@@ -47,6 +49,8 @@ import { AsyncPipe } from '@angular/common';
     ToastrModule.forRoot(),
     TranslateModule,
     LocalizeRouterModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireMessagingModule,
   ],
   declarations: [
     TranslatePipe,

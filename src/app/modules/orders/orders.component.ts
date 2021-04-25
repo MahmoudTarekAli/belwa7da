@@ -19,6 +19,7 @@ import {
   tap,
 } from 'rxjs/operators';
 import { UpdateOrderComponent } from './components/update-order/update-order.component';
+import { PushNotificationService } from '../../shared/services/push-notification/push-notification.service';
 
 @Component({
   selector: 'app-orders',
@@ -27,13 +28,13 @@ import { UpdateOrderComponent } from './components/update-order/update-order.com
 })
 export class OrdersComponent implements OnInit, AfterViewInit {
   dataSource = new OrdersDataSource(this.ordersService);
-  @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
+  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   $destroy = new Subject<any>();
   public loadingTemplate: TemplateRef<any>;
   // @ts-ignore
   @ViewChild('customLoadingTemplate', { static: false })
   customLoadingTemplate: TemplateRef<any>;
-  @ViewChild('searchInput', { static: false }) search: ElementRef;
+  @ViewChild('searchInput', { static: true }) search: ElementRef;
   orders: number;
 
   displayedColumns: string[] = [
@@ -50,11 +51,17 @@ export class OrdersComponent implements OnInit, AfterViewInit {
     public dialogRef: MatDialog,
     private ordersService: OrdersService,
     private notification: NotificationService,
-    private changeDetectorRefs: ChangeDetectorRef
+    private changeDetectorRefs: ChangeDetectorRef,
+
+    private pushNotificationService: PushNotificationService
   ) {}
 
   ngOnInit() {
     this.RefreshServiceData();
+    this.pushNotificationService.listen().subscribe((message: any) => {
+      this.notification.UploadNotification(message.notification.body);
+      this.RefreshServiceData();
+    });
   }
 
   RefreshServiceData() {

@@ -12,7 +12,7 @@ export class NotificationService {
       `<span class="now-ui-icons ui-1_bell-53"></span><b>${message}</b> - Successfully.`,
       '',
       {
-        timeOut: 8000,
+        timeOut: 3000,
         closeButton: true,
         enableHtml: true,
         toastClass: 'alert alert-success alert-with-icon',
@@ -26,7 +26,7 @@ export class NotificationService {
       `<span class="now-ui-icons ui-1_bell-53"></span><b>${message}</b>`,
       '',
       {
-        timeOut: 10000,
+        timeOut: 3000,
         closeButton: true,
         enableHtml: true,
         toastClass: 'alert alert-info alert-with-icon',

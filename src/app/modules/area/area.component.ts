@@ -22,6 +22,7 @@ import { AddAreaComponent } from './components/add-area/add-area.component';
 import { UpdateAreaComponent } from './components/update-area/update-area.component';
 import { AddRegionComponent } from '../region/components/add-region/add-region.component';
 import { AllRegionComponent } from '../region/components/all-region/all-region.component';
+import { PushNotificationService } from '../../shared/services/push-notification/push-notification.service';
 
 @Component({
   selector: 'app-categories',
@@ -30,26 +31,29 @@ import { AllRegionComponent } from '../region/components/all-region/all-region.c
 })
 export class AreaComponent implements OnInit, AfterViewInit {
   dataSource = new AreaDataSource(this.categoriesService);
-  @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
+  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   $destroy = new Subject<any>();
   public loadingTemplate: TemplateRef<any>;
   // @ts-ignore
   @ViewChild('customLoadingTemplate', { static: false })
   customLoadingTemplate: TemplateRef<any>;
-  @ViewChild('searchInput', { static: false }) search: ElementRef;
+  @ViewChild('searchInput', { static: true }) search: ElementRef;
   categories: number;
 
   constructor(
     public dialogRef: MatDialog,
     private categoriesService: AreaService,
     private notification: NotificationService,
-    private changeDetectorRefs: ChangeDetectorRef
+    private changeDetectorRefs: ChangeDetectorRef,
+
+    private pushNotificationService: PushNotificationService
   ) {}
 
   displayedColumns: string[] = ['EnName', 'ArName', 'Actions'];
 
   ngOnInit() {
     this.RefreshServiceData();
+    this.pushNotificationService.listen();
   }
 
   addNewCategory() {

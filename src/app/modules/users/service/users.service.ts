@@ -83,8 +83,14 @@ export class UsersService {
     });
   }
 
-  getUserOrders(id) {
+  getUserOrders(id: string) {
     return this.http.get(`${this.apiUrl}/users/${id}/orders`, {
+      observe: 'response',
+    });
+  }
+
+  updateUserFCMToken(id: string, data: any) {
+    return this.http.put(`${this.apiUrl}/users/${id}`, data, {
       observe: 'response',
     });
   }

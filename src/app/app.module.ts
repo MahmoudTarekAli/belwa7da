@@ -20,9 +20,6 @@ import { CanActivateViaAuthGuard } from './modules/auth/auth-guard/auth.guard';
 import { CanActivateAdminGuard } from './modules/auth/auth-guard/adminAuth.guard';
 import { CanActivateLoginGuard } from './modules/auth/auth-guard/login-guard';
 
-import { AngularFireMessagingModule } from '@angular/fire/messaging';
-import { AngularFireModule } from '@angular/fire';
-
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(httpClient: HttpClient) {
   return new TranslateHttpLoader(httpClient, './assets/locales/', '.json');
@@ -31,10 +28,8 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
 @NgModule({
   imports: [
     BrowserModule,
-    CoreModule,
     HttpClientModule,
-    AngularFireModule.initializeApp(environment.firebase),
-    AngularFireMessagingModule,
+    CoreModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

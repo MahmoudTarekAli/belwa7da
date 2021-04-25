@@ -26,6 +26,7 @@ import { HttpProductsService } from './service/products.service';
 import { Router } from '@angular/router';
 import { UpdateProductComponent } from './components/update-product/update-product.component';
 import { CreateProductComponent } from './components/create-product/create-product.component';
+import { PushNotificationService } from '../../shared/services/push-notification/push-notification.service';
 
 @Component({
   selector: 'app-products',
@@ -42,14 +43,14 @@ export class ProductsComponent implements OnInit, AfterViewInit, OnDestroy {
     'Actions',
   ];
   dataSource = new ProductsDataSource(this.httpProductsService);
-  @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
+  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 
   $destroy = new Subject<any>();
   loading = false;
   noCities = false;
   totalPromotions: number;
   status = '';
-  @ViewChild('searchInput', { static: false }) search: ElementRef;
+  @ViewChild('searchInput', { static: true }) search: ElementRef;
 
   constructor(
     @Optional() public dialogRef: MatDialog,
@@ -57,11 +58,15 @@ export class ProductsComponent implements OnInit, AfterViewInit, OnDestroy {
     private changeDetectorRefs: ChangeDetectorRef,
     private notificationService: NotificationService,
     public translate: TranslateService,
-    private router: Router
+    private router: Router,
+    private pushNotificationService: PushNotificationService
   ) {}
 
   ngOnInit() {
     this.refreshServicesData();
+    this.pushNotificationService.listen().subscribe((message: any) => {
+      this.notificationService.UploadNotification(message.notification.body);
+    });
   }
 
   refreshServicesData() {

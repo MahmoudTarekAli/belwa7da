@@ -1,9 +1,8 @@
-import {BehaviorSubject, Observable, of} from 'rxjs';
-import {CollectionViewer, DataSource} from '@angular/cdk/collections';
-import {catchError, finalize, first, tap} from 'rxjs/operators';
-import {OrdersService} from '../service/orders.service';
+import { BehaviorSubject, Observable, of } from 'rxjs';
+import { CollectionViewer, DataSource } from '@angular/cdk/collections';
+import { catchError, finalize, first, tap } from 'rxjs/operators';
+import { OrdersService } from '../service/orders.service';
 export class OrdersDataSource implements DataSource<any> {
-
   private orders = new BehaviorSubject<any[]>([]);
   private loadingSubject = new BehaviorSubject<boolean>(false);
   private metaSubject = new BehaviorSubject<any>({});
@@ -16,7 +15,7 @@ export class OrdersDataSource implements DataSource<any> {
 
   connect(collectionViewer: CollectionViewer): Observable<any[]> {
     return this.orders.pipe(
-      tap(data => {
+      tap((data) => {
         this.empty = !data.length;
       })
     );
@@ -28,19 +27,19 @@ export class OrdersDataSource implements DataSource<any> {
   }
 
   loadOrders(pageNumber, $search) {
-
     this.loadingSubject.next(true);
 
-    this.ordersService.getAllOrders(pageNumber, $search)
+    this.ordersService
+      .getAllOrders(pageNumber, $search)
       .pipe(
         first(),
-      catchError(() => of([])),
-      finalize(() => this.loadingSubject.next(false))
-    )
-      .subscribe(data => {
+        catchError(() => of([])),
+        finalize(() => this.loadingSubject.next(false))
+      )
+      .subscribe((data) => {
         this.orders.next(data.body.orders);
         // this.orders.next(data.body);
-        console.log(data);
+        // console.log(data);
         this.metaSubject.next(data.body.length);
       });
   }
