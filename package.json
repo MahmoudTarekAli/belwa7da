@@ -57,7 +57,6 @@
     "localize-router-http-loader": "^1.0.2",
     "ng-imgcache": "^1.0.1",
     "ng2-charts": "1.6.0",
-    "ngx-toastr": "^9.1.1",
     "node-sass": "^4.14.1",
     "nouislider": "12.1.0",
     "path": "^0.12.7",
