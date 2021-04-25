@@ -60,8 +60,6 @@ MIT
 @angular/fire
 MIT
 
-@angular/fire/messaging
-
 @angular/forms
 MIT
 
