@@ -13,6 +13,7 @@ firebase.initializeApp({
   measurementId: 'G-8RJ5SLXNGG',
 });
 const messaging = firebase.messaging();
+messaging.onBackgroundMessage(() => {});
 
 // if ('serviceWorker' in navigator) {
 //   navigator.serviceWorker
