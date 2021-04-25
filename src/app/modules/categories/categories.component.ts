@@ -7,7 +7,8 @@ import {
   TemplateRef,
   ViewChild,
 } from '@angular/core';
-import { MatDialog, MatPaginator } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
+import { MatPaginator } from '@angular/material/paginator';
 import { AddCategoryComponent } from './components/add-category/add-category.component';
 import { CategoriesDataSource } from './classes/categories.data.source';
 import { CategoriesService } from './service/categories.service';

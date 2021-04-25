@@ -15,7 +15,7 @@ import { CoreModule } from './core/core.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { routes } from './app.routing';
 import { RouterModule } from '@angular/router';
-import { MAT_DATE_LOCALE } from '@angular/material';
+import { MAT_DATE_LOCALE } from '@angular/material/core';
 import { CanActivateViaAuthGuard } from './modules/auth/auth-guard/auth.guard';
 import { CanActivateAdminGuard } from './modules/auth/auth-guard/adminAuth.guard';
 import { CanActivateLoginGuard } from './modules/auth/auth-guard/login-guard';

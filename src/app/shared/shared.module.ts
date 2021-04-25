@@ -7,7 +7,6 @@ import {
   HttpClient,
 } from '@angular/common/http';
 import { MaterialImportsModule } from './material-imports/material-imports.module';
-import { ImgCacheModule } from 'ng-imgcache';
 
 // components
 // import { CounterDirective } from './directive/counter.directive';
@@ -23,7 +22,6 @@ import { ChartsModule } from 'ng2-charts';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrModule } from 'ngx-toastr';
 import { ComponentsModule } from '../components/components.module';
-import { LocalizeRouterModule } from 'localize-router';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AddButtonComponent } from './components/add-button/add-button.component';
@@ -43,12 +41,10 @@ import { AsyncPipe } from '@angular/common';
     MaterialImportsModule,
     HttpClientModule,
     ComponentsModule,
-    ImgCacheModule,
     ChartsModule,
     NgbModule,
     ToastrModule.forRoot(),
     TranslateModule,
-    LocalizeRouterModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireMessagingModule,
   ],
@@ -70,7 +66,6 @@ import { AsyncPipe } from '@angular/common';
     MaterialImportsModule,
     TranslateModule,
     LocalizedDatePipe,
-    ImgCacheModule,
     SavebuttonComponent,
     OpenDialogButtonComponent,
     SpinnerComponent,
@@ -81,7 +76,6 @@ import { AsyncPipe } from '@angular/common';
     ToastrModule,
     TranslatePipe,
     ComponentsModule,
-    LocalizeRouterModule,
     AddButtonComponent,
     CloseDialogButtonComponent,
   ],

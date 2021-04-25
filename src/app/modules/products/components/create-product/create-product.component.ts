@@ -10,7 +10,7 @@ import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
 import { BoxAnimation } from '../../../../shared/animations/box-animation';
 import { CategoriesService } from '../../../categories/service/categories.service';
 import { NotificationService } from '../../../../shared/services/notifications/notification.service';
-import { MatDialogRef } from '@angular/material';
+import { MatDialogRef } from '@angular/material/dialog';
 import { HttpProductsService } from '../../service/products.service';
 
 @Component({

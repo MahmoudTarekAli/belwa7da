@@ -1,10 +1,17 @@
-import {AfterViewInit, ChangeDetectorRef, Component, Inject, OnInit} from '@angular/core';
-import {FormArray, FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {MAT_DIALOG_DATA, MatDialog, MatTableDataSource} from '@angular/material';
-import {NotificationService} from '../../../../shared/services/notifications/notification.service';
-import {CategoriesService} from '../../../categories/service/categories.service';
-import {BoxAnimation} from '../../../../shared/animations/box-animation';
-import {HttpProductsService} from '../../service/products.service';
+import {
+  AfterViewInit,
+  ChangeDetectorRef,
+  Component,
+  Inject,
+  OnInit,
+} from '@angular/core';
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
+import { MatTableDataSource } from '@angular/material/table';
+import { NotificationService } from '../../../../shared/services/notifications/notification.service';
+import { CategoriesService } from '../../../categories/service/categories.service';
+import { BoxAnimation } from '../../../../shared/animations/box-animation';
+import { HttpProductsService } from '../../service/products.service';
 
 @Component({
   selector: 'app-update-product',
@@ -14,7 +21,13 @@ import {HttpProductsService} from '../../service/products.service';
 })
 export class UpdateProductComponent implements OnInit, AfterViewInit {
   public updateProduct: FormGroup;
-  displayedColumns = ['name', 'unit', 'pricePerUnit', 'increasingAmount', 'Actions'];
+  displayedColumns = [
+    'name',
+    'unit',
+    'pricePerUnit',
+    'increasingAmount',
+    'Actions',
+  ];
   image: any;
   loading = false;
   Images = [];
@@ -35,8 +48,7 @@ export class UpdateProductComponent implements OnInit, AfterViewInit {
     private httpProductService: HttpProductsService,
     private changeDetectorRefs: ChangeDetectorRef,
     private categoryService: CategoriesService
-  ) {
-  }
+  ) {}
 
   ngAfterViewInit() {
     this.changeDetectorRefs.detectChanges();
@@ -111,7 +123,6 @@ export class UpdateProductComponent implements OnInit, AfterViewInit {
   close() {
     this.dialogRef.closeAll();
   }
-
 
   onImagePicked(event: Event) {
     const file = (event.target as HTMLInputElement).files[0];

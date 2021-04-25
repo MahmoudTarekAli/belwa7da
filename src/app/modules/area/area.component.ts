@@ -7,7 +7,8 @@ import {
   TemplateRef,
   ViewChild,
 } from '@angular/core';
-import { MatDialog, MatPaginator } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
+import { MatPaginator } from '@angular/material/paginator';
 import { AreaDataSource } from './classes/area.data.source';
 import { AreaService } from './service/area.service';
 import { NotificationService } from '../../shared/services/notifications/notification.service';

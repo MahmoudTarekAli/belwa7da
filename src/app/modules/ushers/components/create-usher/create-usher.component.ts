@@ -6,12 +6,12 @@ import {
   ViewChild,
   ElementRef,
 } from '@angular/core';
-import {FormBuilder, FormGroup, Validators, FormArray} from '@angular/forms';
-import {BoxAnimation} from '../../../../shared/animations/box-animation';
-import {CategoriesService} from '../../../categories/service/categories.service';
-import {NotificationService} from '../../../../shared/services/notifications/notification.service';
-import {MatDialogRef} from '@angular/material';
-import {HttpUshersService} from '../../service/usher.service';
+import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
+import { BoxAnimation } from '../../../../shared/animations/box-animation';
+import { CategoriesService } from '../../../categories/service/categories.service';
+import { NotificationService } from '../../../../shared/services/notifications/notification.service';
+import { MatDialogRef } from '@angular/material/dialog';
+import { HttpUshersService } from '../../service/usher.service';
 
 @Component({
   selector: 'app-create-usher',
@@ -38,8 +38,7 @@ export class CreateUsherComponent implements OnInit, OnDestroy {
     private notifcationService: NotificationService,
     private categoryService: CategoriesService,
     public dialogRef: MatDialogRef<CreateUsherComponent>
-  ) {
-  }
+  ) {}
 
   ngOnInit() {
     this.categoryService.getAllCategory().subscribe((data) => {
@@ -50,12 +49,11 @@ export class CreateUsherComponent implements OnInit, OnDestroy {
     this.usherForm = this.fg.group({
       name: ['', Validators.required],
       email: ['', Validators.required],
-      mobile: ['', Validators.required]
+      mobile: ['', Validators.required],
     });
   }
 
-  ngOnDestroy() {
-  }
+  ngOnDestroy() {}
 
   finalProductData() {
     const usherData = Object.assign({}, this.usherForm.value);

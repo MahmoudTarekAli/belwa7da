@@ -16,7 +16,8 @@ import {
   takeUntil,
   filter,
 } from 'rxjs/operators';
-import { MatDialog, MatPaginator } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
+import { MatPaginator } from '@angular/material/paginator';
 import { fromEvent } from 'rxjs/internal/observable/fromEvent';
 import { Subject } from 'rxjs';
 import { NotificationService } from '../../shared/services/notifications/notification.service';
