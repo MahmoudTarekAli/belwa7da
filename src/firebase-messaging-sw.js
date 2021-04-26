@@ -1,3 +1,5 @@
+const { SERVFAIL } = require('node:dns');
+
 importScripts('https://www.gstatic.com/firebasejs/8.4.2/firebase-app.js');
 importScripts('https://www.gstatic.com/firebasejs/8.4.2/firebase-messaging.js');
 firebase.initializeApp({
@@ -11,7 +13,13 @@ firebase.initializeApp({
   measurementId: 'G-8RJ5SLXNGG',
 });
 const messaging = firebase.messaging();
-// messaging.onBackgroundMessage(() => {});
+messaging.onBackgroundMessage((payload) => {
+  const title = payload.notification.title;
+  const options = {
+    body: payload.notification.body,
+  };
+  return self.ServiceWorkerRegistration.showNotification(title, options);
+});
 
 // if ('serviceWorker' in navigator) {
 //   navigator.serviceWorker

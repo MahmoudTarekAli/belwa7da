@@ -51,7 +51,6 @@ export class CategoriesComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     this.RefreshServiceData();
-    this.pushNotificationService.requestPermission();
     this.pushNotificationService.listen().subscribe((message: any) => {
       this.notification.UploadNotification(message.notification.body);
     });

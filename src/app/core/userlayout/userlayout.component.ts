@@ -12,6 +12,7 @@ import { Router, NavigationEnd, NavigationStart } from '@angular/router';
 import { Subscription, Observable } from 'rxjs';
 import PerfectScrollbar from 'perfect-scrollbar';
 import { TranslateService } from '@ngx-translate/core';
+import { PushNotificationService } from '../../shared/services/push-notification/push-notification.service';
 
 @Component({
   selector: 'app-userlayout',
@@ -26,7 +27,8 @@ export class UserlayoutComponent implements OnInit {
   constructor(
     public location: Location,
     private router: Router,
-    private translate: TranslateService
+    private translate: TranslateService,
+    private pushNotificationService: PushNotificationService
   ) {
     // this language will be used as a fallback when a translation isn't found in the current language
     translate.setDefaultLang('en');
@@ -35,6 +37,7 @@ export class UserlayoutComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.pushNotificationService.requestPermission();
     const isWindows = navigator.platform.indexOf('Win') > -1 ? true : false;
 
     if (
