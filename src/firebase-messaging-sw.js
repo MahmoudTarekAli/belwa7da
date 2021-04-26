@@ -1,7 +1,5 @@
-importScripts('https://www.gstatic.com/firebasejs/7.24.0/firebase-app.js');
-importScripts(
-  'https://www.gstatic.com/firebasejs/7.24.0/firebase-messaging.js'
-);
+importScripts('https://www.gstatic.com/firebasejs/8.4.2/firebase-app.js');
+importScripts('https://www.gstatic.com/firebasejs/8.4.2/firebase-messaging.js');
 firebase.initializeApp({
   apiKey: 'AIzaSyAul-rgjkwHK3OsGuvq0rCjbzRWEiL-z7g',
   authDomain: 'blwahda-6a522.firebaseapp.com',
@@ -13,7 +11,7 @@ firebase.initializeApp({
   measurementId: 'G-8RJ5SLXNGG',
 });
 const messaging = firebase.messaging();
-messaging.onBackgroundMessage(() => {});
+// messaging.onBackgroundMessage(() => {});
 
 // if ('serviceWorker' in navigator) {
 //   navigator.serviceWorker

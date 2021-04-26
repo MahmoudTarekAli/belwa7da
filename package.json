@@ -47,7 +47,7 @@
     "copy-webpack-plugin": "^4.6.0",
     "core-js": "^2.6.3",
     "express": "^4.17.1",
-    "firebase": "^7.24.0",
+    "firebase": "^8.4.2",
     "firebase-admin": "^8.9.2",
     "font-awesome": "^4.7.0",
     "fs-extra": "^9.0.1",

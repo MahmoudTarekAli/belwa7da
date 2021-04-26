@@ -15,5 +15,5 @@ export const environment = {
     appId: '1:503666408165:web:3f5038634210278cc0b20c',
     measurementId: 'G-8RJ5SLXNGG',
   },
-  base_url: 'http://localhost:8081',
+  base_url: 'https://api.blwahda.com',
 };
