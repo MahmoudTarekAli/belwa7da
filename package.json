@@ -24,7 +24,7 @@
     "@angular/common": "9.1.13",
     "@angular/compiler": "9.1.13",
     "@angular/core": "9.1.13",
-    "@angular/fire": "^5.2.3",
+    "@angular/fire": "^6.0",
     "@angular/forms": "9.1.13",
     "@angular/localize": "^9.1.13",
     "@angular/material": "^9.1.3",
