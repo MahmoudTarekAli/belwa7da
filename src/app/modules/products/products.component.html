@@ -81,7 +81,7 @@
                   [matTooltip]="element.pricePerUnit"
                   matTooltipPosition="above"
                 >
-                  <span>{{ element.pricePerUnit }}</span>
+                  <span>{{ element?.options[0]?.pricePerUnit }}</span>
                 </mat-cell>
               </ng-container>
 

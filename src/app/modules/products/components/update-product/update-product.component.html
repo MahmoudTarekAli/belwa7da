@@ -60,22 +60,19 @@
             <hr class="divider" />
           </form>
 
-          <div
-            class="tabel__container"
-
-          >
+          <div class="tabel__container">
             <mat-table [dataSource]="dataSource" role="grid">
               <!-- Position Column -->
-<!--              <ng-container matColumnDef="Image">-->
-<!--                <mat-header-cell *matHeaderCellDef>-->
-<!--                  {{ 'Image' }}-->
-<!--                </mat-header-cell>-->
-<!--                <mat-cell *matCellDef="let element">-->
-<!--                  <span>-->
-<!--                    <img [src]="element.image ? element.image : ''" />-->
-<!--                  </span>-->
-<!--                </mat-cell>-->
-<!--              </ng-container>-->
+              <!--              <ng-container matColumnDef="Image">-->
+              <!--                <mat-header-cell *matHeaderCellDef>-->
+              <!--                  {{ 'Image' }}-->
+              <!--                </mat-header-cell>-->
+              <!--                <mat-cell *matCellDef="let element">-->
+              <!--                  <span>-->
+              <!--                    <img [src]="element.image ? element.image : ''" />-->
+              <!--                  </span>-->
+              <!--                </mat-cell>-->
+              <!--              </ng-container>-->
 
               <!-- Name Column -->
               <ng-container matColumnDef="name">
@@ -94,6 +91,49 @@
                       placeholder="Unit"
                       type="text"
                       [(ngModel)]="element.name"
+                    />
+                  </div>
+                </mat-cell>
+              </ng-container>
+              <ng-container matColumnDef="nameAr">
+                <mat-header-cell *matHeaderCellDef>
+                  {{ 'الاسم' | translate }}
+                </mat-header-cell>
+                <mat-cell
+                  *matCellDef="let element; let i = index"
+                  [matTooltip]="element.translation.ar.name"
+                  matTooltipPosition="above"
+                >
+                  <span *ngIf="!edit[i]">{{
+                    element.translation.ar.name
+                  }}</span>
+                  <div class="form-group m-1" *ngIf="edit[i]">
+                    <input
+                      class="form-control"
+                      placeholder="Unit"
+                      type="text"
+                      [(ngModel)]="element.translation.ar.name"
+                    />
+                  </div>
+                </mat-cell> </ng-container
+              ><ng-container matColumnDef="unitAr">
+                <mat-header-cell *matHeaderCellDef>
+                  {{ 'الوحدة' | translate }}
+                </mat-header-cell>
+                <mat-cell
+                  *matCellDef="let element; let i = index"
+                  [matTooltip]="element.translation.ar.unit"
+                  matTooltipPosition="above"
+                >
+                  <span *ngIf="!edit[i]">{{
+                    element.translation.ar.unit
+                  }}</span>
+                  <div class="form-group m-1" *ngIf="edit[i]">
+                    <input
+                      class="form-control"
+                      placeholder="Unit"
+                      type="text"
+                      [(ngModel)]="element.translation.ar.unit"
                     />
                   </div>
                 </mat-cell>
@@ -156,7 +196,6 @@
                       [(ngModel)]="element.increasingAmount"
                     />
                   </div>
-
                 </mat-cell>
               </ng-container>
 
@@ -168,10 +207,18 @@
                   <button mat-icon-button (click)="deleteOption(i)">
                     <mat-icon>delete</mat-icon>
                   </button>
-                  <button mat-icon-button *ngIf="!edit[i]" (click)="updateOption(i)">
+                  <button
+                    mat-icon-button
+                    *ngIf="!edit[i]"
+                    (click)="updateOption(i)"
+                  >
                     <mat-icon color="primary">edit</mat-icon>
                   </button>
-                  <button mat-icon-button *ngIf="edit[i]" (click)="submitOption(i)">
+                  <button
+                    mat-icon-button
+                    *ngIf="edit[i]"
+                    (click)="submitOption(i)"
+                  >
                     <mat-icon color="primary">submit</mat-icon>
                   </button>
                 </mat-cell>
@@ -185,10 +232,7 @@
               ></mat-row>
             </mat-table>
 
-            <mat-paginator
-              showFirstLastButtons
-              [pageSize]="10"
-            ></mat-paginator>
+            <mat-paginator showFirstLastButtons [pageSize]="10"></mat-paginator>
           </div>
 
           <form [formGroup]="OptionsForm">

@@ -23,7 +23,9 @@ export class UpdateProductComponent implements OnInit, AfterViewInit {
   public updateProduct: FormGroup;
   displayedColumns = [
     'name',
+    'nameAr',
     'unit',
+    'unitAr',
     'pricePerUnit',
     'increasingAmount',
     'Actions',
@@ -111,7 +113,7 @@ export class UpdateProductComponent implements OnInit, AfterViewInit {
   }
 
   updateOption(i) {
-    console.log(this.edit);
+    // console.log(this.edit);
     this.edit[i] = true;
     this.dataSource._updateChangeSubscription();
   }
@@ -157,6 +159,7 @@ export class UpdateProductComponent implements OnInit, AfterViewInit {
     const formData = new FormData();
     formData.append('image', this.image);
     formData.append('data', JSON.stringify(data));
+
     this.httpProductService
       .UpdateProductData(formData, this.product._id)
       .subscribe(
