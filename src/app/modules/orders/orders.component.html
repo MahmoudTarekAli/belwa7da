@@ -68,7 +68,7 @@
                   {{ 'created at' }}
                 </mat-header-cell>
                 <mat-cell *matCellDef="let element">
-                  {{ element?.created_at | date: 'yyyy/MM/dd' }}
+                  {{ element?.created_at | date: 'yyyy/MM/dd hh:mm a' }}
                 </mat-cell>
               </ng-container>
               <ng-container matColumnDef="Status">
